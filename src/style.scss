@@ -1,0 +1,284 @@
+$uicolor: #000;
+$uifontcolor: #ccc;
+$uifonthover: #fff;
+$svgcolor: #2d2d2d;
+$color0: LightGray;
+$color00: SlateGray;
+$color1: Olive;
+$color2: Orange;
+$color3: Red;
+$color4: Purple;
+$menuH: 4em;
+$footerH: 100px;
+
+@import 'vendor/wire/wire';
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+body {
+  font-family: 'Roboto', sans-serif;
+  text-rendering: optimizeLegibility!important;
+  font-size: .8em;
+  font-weight: 400;
+  margin: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  transition: all 400ms cubic-bezier(0.165, 0.840, 0.440, 1.000);
+}
+
+a,
+a:visited {
+  color: $uifontcolor;
+  text-decoration: none;
+}
+
+.sel a,
+.sel a:visited {
+  color: $uicolor;
+}
+
+a:hover {
+  color: $uifonthover
+}
+
+h1,
+h2,
+p {
+  color: $uicolor
+}
+
+h2 {
+  padding-top: $menuH;
+  font-weight: 400;
+}
+
+ul {
+  list-style: none
+}
+
+#icons {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: center;
+
+  @media screen and (max-width: 768px) {
+  	flex-direction: column;
+  }
+  
+  .icon {
+    background-color: $color00;
+    
+    -webkit-flex: 1 5em;  /* Safari 6.1+ */
+    -ms-flex: 1 5em;  /* IE 10 */    
+    flex: 1 5em;
+    width: 5em;
+    font-size: 2em;
+    padding: 2em;
+    border-radius: 5px;
+    margin: .5em;
+    
+    line-height: 3em;
+    font-weight: bold;
+    text-decoration: none;
+    
+    @media screen and (max-width: 768px) {
+      -webkit-flex: 1 0;  /* Safari 6.1+ */
+      -ms-flex: 1 0;  /* IE 10 */    
+      flex: 1 0;
+      line-height: .5em;
+      width: 100%;
+      padding: 1.5em 0;
+      margin: .25em 0;
+    }
+    
+  }
+
+  .icon:hover {
+    background-color: $color0;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  a,
+  #icons a:visited {
+    color: $color0
+  }
+  a:hover {
+    color: $uicolor
+  }
+}
+
+.level {
+  text-align: center
+}
+
+#menu { top: -$menuH; }
+
+#menu,
+#menu2 {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  color: $uifontcolor;
+  
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    overflow: hidden;
+    
+    // @media screen and (max-width: 768px) {
+    // 	flex-direction: column;
+    // }
+  }
+
+  .container-slot {
+    -webkit-flex: 1;  /* Safari 6.1+ */
+    -ms-flex: 1;  /* IE 10 */    
+    flex: 1;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+    
+    @media screen and (max-width: 768px) {
+    	overflow: auto;
+    	overflow-x: hidden;
+    }
+  }
+}
+
+.slot-title {
+  color: #f1f1f1;
+  position: relative;
+  margin: auto;
+  text-align: center;
+  :hover { color: $uifonthover; }
+
+  a,
+  &.page-sel {
+    display: block;
+    line-height: $menuH;
+    font-weight: 400;
+    // @media screen and (max-width: 768px) {
+    // 	line-height: 2em;
+    // }
+    
+  }
+  
+  &.page-sel {
+    color: $uicolor;
+    background: $color0;
+  }
+}
+
+#top {
+  height: auto;
+  background: $color0;
+  padding: 1em;
+}
+
+.one,
+.two,
+.three,
+.four {
+  min-height: calc(100vh + 200px);
+  max-height: 1000px;
+}
+
+.one,
+.sel:nth-child(2) {
+  background: $color1
+}
+
+.two,
+.sel:nth-child(3) {
+  background: $color2
+}
+
+.three,
+.sel:nth-child(4) {
+  background: $color3
+}
+
+.four,
+.sel:nth-child(5) {
+  background: $color4
+}
+
+#footer {
+  position: fixed;
+  height: $footerH;
+  width: 100%;
+  left: 0;
+  color: $uifonthover;
+  padding: 1rem 0;
+  
+  h3:hover {
+    cursor: pointer;
+  }
+}
+
+#menu,
+#footer {
+  background: $uicolor
+}
+#menu2 {
+  background: $color00;
+}
+
+.up {
+  top: calc(100vh - 110px);
+  // h3 {
+  //   display: none;
+  // }
+}
+
+.middle {
+  top: calc(100vh - 50px)
+}
+
+.down {
+  top: calc(100vh)
+}
+
+#social {
+  width: 100%;
+  margin: 0 auto;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  overflow: hidden;
+  // @media screen and (max-width: 768px) {
+  // 	flex-direction: column;
+  // }
+  div {
+    line-height: $footerH - 25;
+    font-size: 2em;
+    -webkit-flex: 1;  /* Safari 6.1+ */
+    -ms-flex: 1;  /* IE 10 */    
+    flex: 1;
+    text-align: center;
+  
+    span {
+      font-family: 'Roboto', sans-serif;
+      text-rendering: optimizeLegibility!important;
+      font-size: .5em;
+      font-weight: 300;
+      vertical-align: middle;
+      padding: 1em;
+      color: $color0;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+}
