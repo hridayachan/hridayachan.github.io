@@ -11,9 +11,8 @@ $color4: Purple;
 $menuH: 4em;
 $footerH: 100px;
 
-@import 'vendor/wire/wire';
+//@import 'vendor/wire/wire';
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -70,7 +69,7 @@ ul {
   align-content: center;
 
   @media screen and (max-width: 768px) {
-  	flex-direction: column;
+    flex-direction: column;
   }
   
   .icon {
@@ -136,7 +135,7 @@ ul {
     overflow: hidden;
     
     // @media screen and (max-width: 768px) {
-    // 	flex-direction: column;
+    //  flex-direction: column;
     // }
   }
 
@@ -151,8 +150,8 @@ ul {
     transition: all 500ms ease;
     
     @media screen and (max-width: 768px) {
-    	overflow: auto;
-    	overflow-x: hidden;
+      overflow: auto;
+      overflow-x: hidden;
     }
   }
 }
@@ -170,7 +169,7 @@ ul {
     line-height: $menuH;
     font-weight: 400;
     // @media screen and (max-width: 768px) {
-    // 	line-height: 2em;
+    //  line-height: 2em;
     // }
     
   }
@@ -258,7 +257,7 @@ ul {
   display: flex;
   overflow: hidden;
   // @media screen and (max-width: 768px) {
-  // 	flex-direction: column;
+  //  flex-direction: column;
   // }
   div {
     line-height: $footerH - 25;
