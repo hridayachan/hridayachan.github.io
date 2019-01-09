@@ -8,10 +8,11 @@ $color1: Olive;
 $color2: Orange;
 $color3: Red;
 $color4: Purple;
-$menuH: 4em;
+$menuH: 60px;
 $footerH: 100px;
 
 //@import 'vendor/wire/wire';
+@import 'mixins/mixins';
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 body {
@@ -25,7 +26,6 @@ body {
 * {
   margin: 0;
   padding: 0;
-  transition: all 400ms cubic-bezier(0.165, 0.840, 0.440, 1.000);
 }
 
 a,
@@ -74,7 +74,6 @@ ul {
   
   .icon {
     background-color: $color00;
-    
     -webkit-flex: 1 5em;  /* Safari 6.1+ */
     -ms-flex: 1 5em;  /* IE 10 */    
     flex: 1 5em;
@@ -83,7 +82,6 @@ ul {
     padding: 2em;
     border-radius: 5px;
     margin: .5em;
-    
     line-height: 3em;
     font-weight: bold;
     text-decoration: none;
@@ -101,6 +99,7 @@ ul {
   }
 
   .icon:hover {
+    @include transition(all 400ms cubic-bezier(0.165, 0.840, 0.440, 1.000));
     background-color: $color0;
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
   }
@@ -143,11 +142,7 @@ ul {
     -webkit-flex: 1;  /* Safari 6.1+ */
     -ms-flex: 1;  /* IE 10 */    
     flex: 1;
-    -webkit-transition: all 500ms ease;
-    -moz-transition: all 500ms ease;
-    -ms-transition: all 500ms ease;
-    -o-transition: all 500ms ease;
-    transition: all 500ms ease;
+    @include transition(all 500ms ease);
     
     @media screen and (max-width: 768px) {
       overflow: auto;
@@ -161,7 +156,6 @@ ul {
   position: relative;
   margin: auto;
   text-align: center;
-  :hover { color: $uifonthover; }
 
   a,
   &.page-sel {
@@ -229,17 +223,38 @@ ul {
 
 #menu,
 #footer {
-  background: $uicolor
+  background: $uicolor;
+  @include transition(all 400ms cubic-bezier(0.165, 0.840, 0.440, 1.000));
 }
+
 #menu2 {
-  background: $color00;
+  background: black;
+  h3 { font-size: 3em; }
+  @include transition(all 400ms cubic-bezier(0.165, 0.840, 0.440, 1.000));
+
+  .container-slot .slot-title a {
+    @include transition(color 300ms ease);
+    color: white;
+    border-right: 1px solid lighten(black, 14deg);
+  }
+
+  &:hover {
+    @for $i from 1 through 5 {
+      .container-slot:nth-child(#{$i}) .slot-title a {
+        $colordeg: $i * 65;
+        $newcolor: adjust-hue(lime, $colordeg);
+        color: $newcolor;
+
+        &:hover {
+          background-color: lighten(black, 14deg);
+        } 
+      }
+    }
+  }
 }
 
 .up {
   top: calc(100vh - 110px);
-  // h3 {
-  //   display: none;
-  // }
 }
 
 .middle {
