@@ -1,31 +1,31 @@
-$uicolor: #000;
-$uifontcolor: #ccc;
-$uifonthover: #fff;
-$svgcolor: #2d2d2d;
-$color0: LightGray;
-$color00: SlateGray;
-$color1: Olive;
-$color2: Orange;
-$color3: Red;
-$color4: Purple;
-$menuH: 60px;
-$footerH: 100px;
+@import 'partials/vars';
+@import 'partials/mixins';
+@import 'partials/functions';
 
-//@import 'vendor/wire/wire';
-@import 'mixins/mixins';
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
 body {
   font-family: 'Roboto', sans-serif;
   text-rendering: optimizeLegibility!important;
   font-size: .8em;
   font-weight: 400;
-  margin: 0;
 }
 
 * {
   margin: 0;
   padding: 0;
+}
+
+p, li {
+  font-size: 1.5em;
+  line-height: 1.8em;
+  padding-bottom: 1em;
+}
+
+ul {
+  padding: 0 1em;
+  font-style: italic;
 }
 
 a,
@@ -36,26 +36,46 @@ a:visited {
 
 .sel a,
 .sel a:visited {
-  color: $uicolor;
+  //color: $uicolor;
 }
 
 a:hover {
-  color: $uifonthover
+  color: $uifonthover;
 }
 
-h1,
-h2,
-p {
-  color: $uicolor
-}
-
-h2 {
-  padding-top: $menuH;
-  font-weight: 400;
+h1 {
+  font-size: 2.5em
 }
 
 ul {
   list-style: none
+}
+
+.cursive {
+  font-family: 'Pacifico', cursive;
+  font-weight: 300 !important;
+}
+
+.small {
+  font-size: 1em;
+}
+
+#top {
+  height: auto;
+  background: color(color1);
+  padding: 90px 1em 1em;
+
+  .cursive {
+    color: darken(color(color1), 80);
+    margin-left: .5em;
+  }
+
+  label { margin-left: 1em }
+
+  @include device-lg {
+    .cursive, label { margin-left: 0 }
+  }
+
 }
 
 #icons {
@@ -68,17 +88,16 @@ ul {
   justify-content: space-around;
   align-content: center;
 
-  @media screen and (max-width: 768px) {
+  @include device-lg {
     flex-direction: column;
   }
   
   .icon {
-    background-color: $color00;
-    -webkit-flex: 1 5em;  /* Safari 6.1+ */
-    -ms-flex: 1 5em;  /* IE 10 */    
-    flex: 1 5em;
+    background-color: $color0;
+    @include flex(1 5em);
     width: 5em;
-    font-size: 2em;
+    height: 100px;
+    font-size: 1em;
     padding: 2em;
     border-radius: 5px;
     margin: .5em;
@@ -86,10 +105,8 @@ ul {
     font-weight: bold;
     text-decoration: none;
     
-    @media screen and (max-width: 768px) {
-      -webkit-flex: 1 0;  /* Safari 6.1+ */
-      -ms-flex: 1 0;  /* IE 10 */    
-      flex: 1 0;
+    @include device-lg {
+      @include flex(1 0);
       line-height: .5em;
       width: 100%;
       padding: 1.5em 0;
@@ -100,27 +117,26 @@ ul {
 
   .icon:hover {
     @include transition(all 400ms cubic-bezier(0.165, 0.840, 0.440, 1.000));
-    background-color: $color0;
+    background-color: map-get($panel-colors, 1);
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
   }
   
   a,
   #icons a:visited {
-    color: $color0
+    color: color(color1)
   }
   a:hover {
     color: $uicolor
   }
 }
 
-.level {
-  text-align: center
+#menu {
+  top: -$menuH
 }
-
-#menu { top: -$menuH; }
 
 #menu,
 #menu2 {
+  height: $menuH;
   position: fixed;
   width: 100%;
   left: 0;
@@ -132,19 +148,13 @@ ul {
     display: -webkit-flex; /* Safari */
     display: flex;
     overflow: hidden;
-    
-    // @media screen and (max-width: 768px) {
-    //  flex-direction: column;
-    // }
   }
 
   .container-slot {
-    -webkit-flex: 1;  /* Safari 6.1+ */
-    -ms-flex: 1;  /* IE 10 */    
-    flex: 1;
+    @include flex(1);
     @include transition(all 500ms ease);
-    
-    @media screen and (max-width: 768px) {
+
+    @include device-lg {
       overflow: auto;
       overflow-x: hidden;
     }
@@ -152,7 +162,6 @@ ul {
 }
 
 .slot-title {
-  color: #f1f1f1;
   position: relative;
   margin: auto;
   text-align: center;
@@ -162,7 +171,7 @@ ul {
     display: block;
     line-height: $menuH;
     font-weight: 400;
-    // @media screen and (max-width: 768px) {
+    // @include device-lg {
     //  line-height: 2em;
     // }
     
@@ -170,42 +179,59 @@ ul {
   
   &.page-sel {
     color: $uicolor;
-    background: $color0;
+    background: color(color1);
   }
 }
 
-#top {
-  height: auto;
-  background: $color0;
-  padding: 1em;
-}
-
-.one,
-.two,
-.three,
-.four {
+.level2,
+.level3,
+.level4,
+.level5 {
   min-height: calc(100vh + 200px);
   max-height: 1000px;
+  padding: 2em;
+
+  &.level {
+    margin: 0;
+    text-align: left;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: center;
+
+    @include device-lg-xl {
+      flex-direction: column;
+    }
+
+    .textarea {
+      margin-top: $menuH;
+      padding: 2em;
+      max-width: 768px;
+      @include flex(2);
+      @include device-lg-xl {
+        order: 2;
+      }
+    }
+
+    .animarea {
+      margin-top: $menuH;
+      @include flex(1);
+      @include device-lg-xl {
+        order: 1;
+      }
+    }
+  }
 }
 
-.one,
-.sel:nth-child(2) {
-  background: $color1
-}
-
-.two,
-.sel:nth-child(3) {
-  background: $color2
-}
-
-.three,
-.sel:nth-child(4) {
-  background: $color3
-}
-
-.four,
-.sel:nth-child(5) {
-  background: $color4
+@for $i from 2 through 5 {
+  .level#{$i},
+  .sel:nth-child(#{$i}) {
+    background: color(color#{$i});
+    .animarea {
+      background-color: darken(color(color#{$i}), 5);
+    }
+  }
 }
 
 #footer {
@@ -229,7 +255,7 @@ ul {
 
 #menu2 {
   background: black;
-  h3 { font-size: 3em; }
+  h3 { font-size: 2.4em; }
   @include transition(all 400ms cubic-bezier(0.165, 0.840, 0.440, 1.000));
 
   .container-slot .slot-title a {
@@ -265,21 +291,23 @@ ul {
   top: calc(100vh)
 }
 
+#panels {
+  pointer-events: none;
+}
+
 #social {
   width: 100%;
   margin: 0 auto;
   display: -webkit-flex; /* Safari */
   display: flex;
   overflow: hidden;
-  // @media screen and (max-width: 768px) {
+  // @include device-lg {
   //  flex-direction: column;
   // }
   div {
     line-height: $footerH - 25;
     font-size: 2em;
-    -webkit-flex: 1;  /* Safari 6.1+ */
-    -ms-flex: 1;  /* IE 10 */    
-    flex: 1;
+    @include flex(1);
     text-align: center;
   
     span {
@@ -289,8 +317,8 @@ ul {
       font-weight: 300;
       vertical-align: middle;
       padding: 1em;
-      color: $color0;
-      @media screen and (max-width: 768px) {
+      color: color(color1);
+      @include device-lg {
         display: none;
       }
     }

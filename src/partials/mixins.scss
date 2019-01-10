@@ -1,0 +1,25 @@
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin device-lg-xl {
+  @media only screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin device-lg {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin flex($sz) {
+	-webkit-flex: $sz;  /* Safari 6.1+ */
+    -ms-flex: $sz;  /* IE 10 */    
+    flex: $sz;
+}

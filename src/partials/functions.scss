@@ -1,0 +1,10 @@
+@import 'vars';
+
+@function color($key) {
+  @if map-has-key($panel-colors, $key) {
+    @return map-get($panel-colors, $key);
+  }
+
+  @warn "Unknown `#{$key}` in $panel-colors.";
+  @return null;
+}

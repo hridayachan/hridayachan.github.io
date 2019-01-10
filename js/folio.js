@@ -1,11 +1,13 @@
 // get window size
 var homeH = $( window ).height(),
+// number of menus
+nom = 5,
 // quick array setup for fake pages
 pH = [];
 pH.push("0");
 
 // create array with panel heights
-for (var s=1; s<5; s++) { 
+for (var s=1; s<nom; s++) { 
   var po = $("#panels a:nth-child("+s+")").position();
   pH.push( Math.round(po.top) );
 };
@@ -61,7 +63,7 @@ $( window ).scroll(function(event) {
   lastScrollTop = st;
 
     // toggle top menu selection
-    for (var i=1;i<5;i++) {
+    for (var i=1;i<nom;i++) {
       if ( $( window ).scrollTop() > pH[i]-menuH ) { 
         $("#menu .container-slot").removeClass("sel");
         $("#menu .container-slot:nth-child("+(i+1)+")").addClass("sel");
