@@ -1,7 +1,6 @@
 @import 'partials/vars';
 @import 'partials/mixins';
 @import 'partials/functions';
-
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
@@ -37,11 +36,6 @@ a,
 a:visited {
   color: $uifontcolor;
   text-decoration: none;
-}
-
-.sel a,
-.sel a:visited {
-  //color: $uicolor;
 }
 
 a:hover {
@@ -91,7 +85,7 @@ ul {
   }
   
   .icon {
-    background-color: $color0;
+    background-color: darken(color(color1), 5);
     @include flex(1 5em);
     width: 5em;
     height: 100px;
@@ -102,7 +96,6 @@ ul {
     line-height: 3em;
     font-weight: bold;
     text-decoration: none;
-    
     @include pad2-1;
     @include device-lg {
       @include flex(1 0);
@@ -119,18 +112,11 @@ ul {
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
   }
   
-  a,
-  #icons a:visited {
-    color: color(color1)
-  }
-  a:hover {
-    color: $uicolor
-  }
+  a, #icons a:visited { color: color(color1) }
+  a:hover { color: $uicolor }
 }
 
-#menu {
-  top: -$menuH
-}
+#menu { top: -$menuH }
 
 #menu,
 #menu2 {
@@ -143,9 +129,6 @@ ul {
   .container {
     width: 100%;
     margin: 0 auto;
-    // display: -webkit-flex; /* Safari */
-    // display: flex;
-    // overflow: hidden;
     @include basicflex;
   }
 
@@ -177,6 +160,8 @@ ul {
     background: color(color1);
   }
 }
+
+#panels { pointer-events: none; }
 
 .level2,
 .level3,
@@ -301,6 +286,9 @@ ul {
   }
 }
 
+.middle { top: calc(100vh - 50px) }
+.down { top: calc(100vh) }
+
 .up {
   top: calc(100vh - 250px);
   @include device-lg-xl {
@@ -309,16 +297,4 @@ ul {
   @include device-lg {
     top: calc(100vh - 250px);
   }
-}
-
-.middle {
-  top: calc(100vh - 50px)
-}
-
-.down {
-  top: calc(100vh)
-}
-
-#panels {
-  pointer-events: none;
 }

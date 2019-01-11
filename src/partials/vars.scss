@@ -1,7 +1,6 @@
 $uicolor: #000;
 $uifontcolor: #ccc;
 $uifonthover: #fff;
-$svgcolor: #2d2d2d;
 
 $panel-colors: (
   color1: LightGray,
@@ -10,9 +9,6 @@ $panel-colors: (
   color4: FireBrick,
   color5: Teal
 );
-
-$color0: SlateGray;
-$color1: map-get($panel-colors, color1);
 
 $menuH: 60px;
 $footerH: 250px;
