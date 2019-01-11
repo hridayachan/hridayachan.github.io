@@ -286,9 +286,6 @@ ul {
   }
 }
 
-.middle { top: calc(100vh - 50px) }
-.down { top: calc(100vh) }
-
 .up {
   top: calc(100vh - 250px);
   @include device-lg-xl {
@@ -298,3 +295,6 @@ ul {
     top: calc(100vh - 250px);
   }
 }
+
+.middle { top: calc(100vh - 50px) }
+.down { top: calc(100vh) }
