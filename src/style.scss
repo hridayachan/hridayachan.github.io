@@ -21,6 +21,11 @@ p, li {
   font-size: 1.5em;
   line-height: 1.8em;
   padding-bottom: 1em;
+
+  @include device-lg {
+    font-size: 1.3em;
+    line-height: 1.6em;
+  }
 }
 
 ul {
@@ -54,10 +59,6 @@ ul {
 .cursive {
   font-family: 'Pacifico', cursive;
   font-weight: 300 !important;
-}
-
-.small {
-  font-size: 1em;
 }
 
 #top {
@@ -97,19 +98,19 @@ ul {
     @include flex(1 5em);
     width: 5em;
     height: 100px;
-    font-size: 1em;
-    padding: 2em;
+    font-size: 1.5em;
+    text-align: center;
     border-radius: 5px;
     margin: .5em;
     line-height: 3em;
     font-weight: bold;
     text-decoration: none;
     
+    @include pad2-1;
     @include device-lg {
       @include flex(1 0);
       line-height: .5em;
-      width: 100%;
-      padding: 1.5em 0;
+      width: auto;
       margin: .25em 0;
     }
     
@@ -170,11 +171,7 @@ ul {
   &.page-sel {
     display: block;
     line-height: $menuH;
-    font-weight: 400;
-    // @include device-lg {
-    //  line-height: 2em;
-    // }
-    
+    font-weight: 400;  
   }
   
   &.page-sel {
@@ -187,30 +184,30 @@ ul {
 .level3,
 .level4,
 .level5 {
-  min-height: calc(100vh + 200px);
-  max-height: 1000px;
-  padding: 2em;
+  height: auto;
+  @include pad2-1;
 
   &.level {
     margin: 0;
     text-align: left;
     display: -webkit-flex; /* Safari */
     display: flex;
-    flex-flow: row wrap;
     justify-content: space-around;
     align-content: center;
 
     @include device-lg-xl {
       flex-direction: column;
+      padding-top: 70px;
     }
 
     .textarea {
       margin-top: $menuH;
-      padding: 2em;
       max-width: 768px;
       @include flex(2);
+      @include pad2-1;
       @include device-lg-xl {
         order: 2;
+        margin-top: 0;
       }
     }
 
@@ -218,7 +215,9 @@ ul {
       margin-top: $menuH;
       @include flex(1);
       @include device-lg-xl {
+        height: 200px; // remove
         order: 1;
+        margin-top: 0;
       }
     }
   }
@@ -293,34 +292,4 @@ ul {
 
 #panels {
   pointer-events: none;
-}
-
-#social {
-  width: 100%;
-  margin: 0 auto;
-  display: -webkit-flex; /* Safari */
-  display: flex;
-  overflow: hidden;
-  // @include device-lg {
-  //  flex-direction: column;
-  // }
-  div {
-    line-height: $footerH - 25;
-    font-size: 2em;
-    @include flex(1);
-    text-align: center;
-  
-    span {
-      font-family: 'Roboto', sans-serif;
-      text-rendering: optimizeLegibility!important;
-      font-size: .5em;
-      font-weight: 300;
-      vertical-align: middle;
-      padding: 1em;
-      color: color(color1);
-      @include device-lg {
-        display: none;
-      }
-    }
-  }
 }

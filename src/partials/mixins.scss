@@ -20,6 +20,11 @@
 
 @mixin flex($sz) {
 	-webkit-flex: $sz;  /* Safari 6.1+ */
-    -ms-flex: $sz;  /* IE 10 */    
-    flex: $sz;
+  -ms-flex: $sz;  /* IE 10 */    
+  flex: $sz;
+}
+
+@mixin pad2-1 {
+  padding: 2em;
+  @include device-lg-xl { padding: 1em }
 }

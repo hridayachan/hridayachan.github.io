@@ -14,6 +14,10 @@ p, li {
   font-size: 1.5em;
   line-height: 1.8em;
   padding-bottom: 1em; }
+  @media only screen and (max-width: 768px) {
+    p, li {
+      font-size: 1.3em;
+      line-height: 1.6em; } }
 
 ul {
   padding: 0 1em;
@@ -36,9 +40,6 @@ ul {
 .cursive {
   font-family: 'Pacifico', cursive;
   font-weight: 300 !important; }
-
-.small {
-  font-size: 1em; }
 
 #top {
   height: auto;
@@ -75,13 +76,17 @@ ul {
     flex: 1 5em;
     width: 5em;
     height: 100px;
-    font-size: 1em;
-    padding: 2em;
+    font-size: 1.5em;
+    text-align: center;
     border-radius: 5px;
     margin: .5em;
     line-height: 3em;
     font-weight: bold;
-    text-decoration: none; }
+    text-decoration: none;
+    padding: 2em; }
+    @media only screen and (max-width: 1024px) {
+      #icons .icon {
+        padding: 1em; } }
     @media only screen and (max-width: 768px) {
       #icons .icon {
         -webkit-flex: 1 0;
@@ -90,8 +95,7 @@ ul {
         /* IE 10 */
         flex: 1 0;
         line-height: .5em;
-        width: 100%;
-        padding: 1.5em 0;
+        width: auto;
         margin: .25em 0; } }
   #icons .icon:hover {
     -webkit-transition: all 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -158,9 +162,14 @@ ul {
 .level3,
 .level4,
 .level5 {
-  min-height: calc(100vh + 200px);
-  max-height: 1000px;
+  height: auto;
   padding: 2em; }
+  @media only screen and (max-width: 1024px) {
+    .level2,
+    .level3,
+    .level4,
+    .level5 {
+      padding: 1em; } }
   .level2.level,
   .level3.level,
   .level4.level,
@@ -170,7 +179,6 @@ ul {
     display: -webkit-flex;
     /* Safari */
     display: flex;
-    flex-flow: row wrap;
     justify-content: space-around;
     align-content: center; }
     @media only screen and (max-width: 1024px) {
@@ -178,25 +186,33 @@ ul {
       .level3.level,
       .level4.level,
       .level5.level {
-        flex-direction: column; } }
+        flex-direction: column;
+        padding-top: 70px; } }
     .level2.level .textarea,
     .level3.level .textarea,
     .level4.level .textarea,
     .level5.level .textarea {
       margin-top: 60px;
-      padding: 2em;
       max-width: 768px;
       -webkit-flex: 2;
       /* Safari 6.1+ */
       -ms-flex: 2;
       /* IE 10 */
-      flex: 2; }
+      flex: 2;
+      padding: 2em; }
       @media only screen and (max-width: 1024px) {
         .level2.level .textarea,
         .level3.level .textarea,
         .level4.level .textarea,
         .level5.level .textarea {
-          order: 2; } }
+          padding: 1em; } }
+      @media only screen and (max-width: 1024px) {
+        .level2.level .textarea,
+        .level3.level .textarea,
+        .level4.level .textarea,
+        .level5.level .textarea {
+          order: 2;
+          margin-top: 0; } }
     .level2.level .animarea,
     .level3.level .animarea,
     .level4.level .animarea,
@@ -212,7 +228,9 @@ ul {
         .level3.level .animarea,
         .level4.level .animarea,
         .level5.level .animarea {
-          order: 1; } }
+          height: 200px;
+          order: 1;
+          margin-top: 0; } }
 
 .level2,
 .sel:nth-child(2) {
@@ -310,33 +328,5 @@ ul {
 
 #panels {
   pointer-events: none; }
-
-#social {
-  width: 100%;
-  margin: 0 auto;
-  display: -webkit-flex;
-  /* Safari */
-  display: flex;
-  overflow: hidden; }
-  #social div {
-    line-height: 75px;
-    font-size: 2em;
-    -webkit-flex: 1;
-    /* Safari 6.1+ */
-    -ms-flex: 1;
-    /* IE 10 */
-    flex: 1;
-    text-align: center; }
-    #social div span {
-      font-family: 'Roboto', sans-serif;
-      text-rendering: optimizeLegibility !important;
-      font-size: .5em;
-      font-weight: 300;
-      vertical-align: middle;
-      padding: 1em;
-      color: LightGray; }
-      @media only screen and (max-width: 768px) {
-        #social div span {
-          display: none; } }
 
 /*# sourceMappingURL=style.css.map */
