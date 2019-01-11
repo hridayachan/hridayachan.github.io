@@ -61,9 +61,9 @@ ul {
   display: -webkit-flex;
   /* Safari */
   display: flex;
-  flex-flow: row wrap;
   justify-content: space-around;
-  align-content: center; }
+  align-content: center;
+  flex-flow: row wrap; }
   @media only screen and (max-width: 768px) {
     #icons {
       flex-direction: column; } }
@@ -127,7 +127,8 @@ ul {
     display: -webkit-flex;
     /* Safari */
     display: flex;
-    overflow: hidden; }
+    justify-content: space-around;
+    align-content: center; }
   #menu .container-slot,
   #menu2 .container-slot {
     -webkit-flex: 1;
@@ -262,13 +263,41 @@ ul {
 
 #footer {
   position: fixed;
-  height: 100px;
-  width: 100%;
   left: 0;
+  height: 250px;
+  width: 100%;
   color: #fff;
-  padding: 1rem 0; }
-  #footer h3:hover {
-    cursor: pointer; }
+  padding: 1.3em 2em;
+  display: -webkit-flex;
+  /* Safari */
+  display: flex;
+  justify-content: space-around;
+  align-content: center; }
+  #footer .container {
+    max-width: 750px;
+    -webkit-flex: 1;
+    /* Safari 6.1+ */
+    -ms-flex: 1;
+    /* IE 10 */
+    flex: 1; }
+  #footer .slot-title {
+    font-size: 1.2em;
+    font-weight: 100; }
+    #footer .slot-title:hover {
+      cursor: pointer; }
+    @media only screen and (max-width: 1024px) {
+      #footer .slot-title {
+        text-align: left;
+        font-weight: 100;
+        font-size: 1.3em; } }
+  @media only screen and (max-width: 1024px) {
+    #footer {
+      width: auto; }
+      #footer .container {
+        max-width: auto; }
+      #footer p {
+        font-size: 1.1em;
+        line-height: 1.3em; } }
 
 #menu,
 #footer {
@@ -318,7 +347,13 @@ ul {
       background-color: #242424; }
 
 .up {
-  top: calc(100vh - 110px); }
+  top: calc(100vh - 250px); }
+  @media only screen and (max-width: 1024px) {
+    .up {
+      top: calc(100vh - 150px); } }
+  @media only screen and (max-width: 768px) {
+    .up {
+      top: calc(100vh - 250px); } }
 
 .middle {
   top: calc(100vh - 50px); }

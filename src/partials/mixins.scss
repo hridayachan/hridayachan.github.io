@@ -24,6 +24,13 @@
   flex: $sz;
 }
 
+@mixin basicflex {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
 @mixin pad2-1 {
   padding: 2em;
   @include device-lg-xl { padding: 1em }

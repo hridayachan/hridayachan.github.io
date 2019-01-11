@@ -13,7 +13,7 @@ for (var s=1; s<nom; s++) {
 };
 
 // link the footer MORE
-$("#footer h3").click(function() {
+$("#footer .slot-title").click(function() {
   $("#footer").addClass("up").removeClass("middle");
 });
 

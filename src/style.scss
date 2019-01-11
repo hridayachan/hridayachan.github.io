@@ -83,11 +83,8 @@ ul {
   width: 100%;
   height: auto;
   margin: 0 auto;
-  display: -webkit-flex; /* Safari */
-  display: flex;
+  @include basicflex;
   flex-flow: row wrap;
-  justify-content: space-around;
-  align-content: center;
 
   @include device-lg {
     flex-direction: column;
@@ -146,9 +143,10 @@ ul {
   .container {
     width: 100%;
     margin: 0 auto;
-    display: -webkit-flex; /* Safari */
-    display: flex;
-    overflow: hidden;
+    // display: -webkit-flex; /* Safari */
+    // display: flex;
+    // overflow: hidden;
+    @include basicflex;
   }
 
   .container-slot {
@@ -190,10 +188,7 @@ ul {
   &.level {
     margin: 0;
     text-align: left;
-    display: -webkit-flex; /* Safari */
-    display: flex;
-    justify-content: space-around;
-    align-content: center;
+    @include basicflex;
 
     @include device-lg-xl {
       flex-direction: column;
@@ -235,14 +230,42 @@ ul {
 
 #footer {
   position: fixed;
+  left: 0;
   height: $footerH;
   width: 100%;
-  left: 0;
   color: $uifonthover;
-  padding: 1rem 0;
+  padding: 1.3em 2em;
+  @include basicflex;
+
+  .container {
+    max-width: 750px;
+    @include flex(1);
+  }
+
+  .slot-title {
+    font-size: 1.2em;
+    font-weight: 100;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @include device-lg-xl {
+      text-align: left;
+      font-weight: 100;
+      font-size: 1.3em;
+    }
+  }
   
-  h3:hover {
-    cursor: pointer;
+  @include device-lg-xl {
+    width: auto;
+    .container {
+      max-width: auto;
+    }
+    p {
+      font-size: 1.1em;
+      line-height: 1.3em;
+    }
   }
 }
 
@@ -279,7 +302,13 @@ ul {
 }
 
 .up {
-  top: calc(100vh - 110px);
+  top: calc(100vh - 250px);
+  @include device-lg-xl {
+    top: calc(100vh - 150px);
+  }
+  @include device-lg {
+    top: calc(100vh - 250px);
+  }
 }
 
 .middle {
