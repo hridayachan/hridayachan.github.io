@@ -1,5 +1,78 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto");
 @import url("https://fonts.googleapis.com/css?family=Pacifico");
+#kraken {
+  margin: 20%;
+  width: auto;
+  height: 400px; }
+  @media only screen and (max-width: 2050px) {
+    #kraken {
+      margin: 15%;
+      width: auto;
+      height: 350px; } }
+  @media only screen and (max-width: 1024px) {
+    #kraken {
+      margin: 5%;
+      width: auto;
+      height: 300px; } }
+  @media only screen and (max-width: 768px) {
+    #kraken {
+      margin: 5%;
+      width: auto;
+      height: 300px; } }
+  #kraken svg {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+    stroke-linecap: round;
+    stroke-linejoin: bevel;
+    stroke-miterlimit: 1.5; }
+
+.box {
+  fill: none;
+  stroke: #4d4d00;
+  stroke-width: 4px;
+  stroke-dasharray: 2168;
+  stroke-dashoffset: 2168;
+  animation: box 3s linear normal 1s 1;
+  animation-fill-mode: forwards; }
+
+.brain {
+  fill: none;
+  stroke: #ffff80;
+  stroke-width: 5.5px;
+  stroke-linejoin: round;
+  stroke-dasharray: 1401;
+  stroke-dashoffset: 1401;
+  animation: brain 1.5s linear normal 4s 1;
+  animation-fill-mode: forwards; }
+
+#shine path {
+  fill: none;
+  stroke: #ffff1a;
+  stroke-width: 2px;
+  opacity: 0;
+  animation: shine .4s ease normal 5.5s infinite; }
+
+@keyframes box {
+  from {
+    stroke-dashoffset: 2168; }
+  to {
+    stroke-dashoffset: 0; } }
+@keyframes brain {
+  from {
+    stroke-dashoffset: 1401; }
+  to {
+    stroke-dashoffset: 0; } }
+@keyframes shine {
+  from {
+    opacity: 0; }
+  30% {
+    opacity: 0.6; }
+  50% {
+    opacity: 0.2; }
+  90% {
+    opacity: 0.6; }
+  to {
+    opacity: 0.8; } }
 body {
   font-family: 'Roboto', sans-serif;
   text-rendering: optimizeLegibility !important;
@@ -190,6 +263,7 @@ ul {
       .level4.level,
       .level5.level {
         flex-direction: column;
+        align-items: top;
         padding-top: 70px; } }
     .level2.level .textarea,
     .level3.level .textarea,
@@ -226,12 +300,18 @@ ul {
       -ms-flex: 1;
       /* IE 10 */
       flex: 1; }
+      @media only screen and (max-width: 768px) {
+        .level2.level .animarea,
+        .level3.level .animarea,
+        .level4.level .animarea,
+        .level5.level .animarea {
+          width: 100%; } }
       @media only screen and (max-width: 1024px) {
         .level2.level .animarea,
         .level3.level .animarea,
         .level4.level .animarea,
         .level5.level .animarea {
-          height: 200px;
+          width: 100%;
           order: 1;
           margin-top: 0; } }
 

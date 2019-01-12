@@ -1,6 +1,8 @@
 @import 'partials/vars';
 @import 'partials/mixins';
 @import 'partials/functions';
+@import 'partials/anim1';
+
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
@@ -173,10 +175,12 @@ ul {
   &.level {
     margin: 0;
     text-align: left;
+    //align-items: center;
     @include basicflex;
 
     @include device-lg-xl {
       flex-direction: column;
+      align-items: top;
       padding-top: 70px;
     }
 
@@ -194,8 +198,11 @@ ul {
     .animarea {
       margin-top: $menuH;
       @include flex(1);
+      @include device-lg {
+        width: 100%;
+      }
       @include device-lg-xl {
-        height: 200px; // remove
+        width: 100%;
         order: 1;
         margin-top: 0;
       }

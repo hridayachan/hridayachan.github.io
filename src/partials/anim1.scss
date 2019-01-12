@@ -1,0 +1,79 @@
+@import 'vars';
+@import 'mixins';
+
+$lengthbox: 2168;
+$lengthbrain: 1401;
+
+#kraken {
+  margin: 20%;
+  width: auto;
+  height: 400px;
+  @include device-lg-xxl {
+      margin: 15%;
+      width: auto;
+      height: 350px;
+  }
+  @include device-lg-xl {
+      margin: 5%;
+      width: auto;
+      height: 300px;
+  }
+  @include device-lg {
+      margin: 5%;
+      width: auto;
+      height: 300px;
+  }
+
+  svg {
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+    stroke-linecap: round;
+    stroke-linejoin: bevel;
+    stroke-miterlimit: 1.5;
+  }
+}
+.box {
+  fill: none;
+  stroke: darken(color(color2), 10);
+  stroke-width: 4px;
+
+  stroke-dasharray: $lengthbox;
+  stroke-dashoffset: $lengthbox;
+  animation: box 3s linear normal 1s 1;
+  animation-fill-mode: forwards;
+}
+.brain {
+  fill: none;
+  stroke: lighten(color(color2), 50);
+  stroke-width: 5.5px;
+  stroke-linejoin: round;
+
+  stroke-dasharray: $lengthbrain;
+  stroke-dashoffset: $lengthbrain;
+  animation: brain 1.5s linear normal 4s 1;
+  animation-fill-mode: forwards;
+}
+#shine path {
+  fill: none;
+  stroke: lighten(color(color2), 30);
+  stroke-width: 2px;
+  opacity: 0;
+  animation: shine .4s ease normal 5.5s infinite;
+  //display: none;
+}
+
+@keyframes box {
+  from { stroke-dashoffset: $lengthbox }
+  to { stroke-dashoffset: 0 }
+}
+@keyframes brain {
+  from { stroke-dashoffset: $lengthbrain }
+  to { stroke-dashoffset: 0 }
+}
+@keyframes shine {
+  from { opacity: 0 }
+  30% { opacity: .6 }
+  50% { opacity: .2 }
+  90% { opacity: .6 }
+  to { opacity: .8 }
+}
