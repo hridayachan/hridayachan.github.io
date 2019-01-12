@@ -3,20 +3,20 @@
 #kraken {
   margin: 20%;
   width: auto;
-  height: 400px; }
+  height: 500px; }
   @media only screen and (max-width: 2050px) {
     #kraken {
-      margin: 15%;
+      margin: 5%;
       width: auto;
-      height: 350px; } }
+      height: 400px; } }
   @media only screen and (max-width: 1024px) {
     #kraken {
-      margin: 5%;
-      width: auto;
-      height: 300px; } }
+      margin: 2% auto;
+      width: 300px;
+      height: auto; } }
   @media only screen and (max-width: 768px) {
     #kraken {
-      margin: 5%;
+      margin: 5% auto;
       width: auto;
       height: 300px; } }
   #kraken svg {
@@ -105,7 +105,10 @@ a:hover {
   color: #fff; }
 
 h1 {
-  font-size: 2.5em; }
+  font-size: 3em; }
+  @media only screen and (max-width: 768px) {
+    h1 {
+      font-size: 2.5em; } }
 
 ul {
   list-style: none; }
@@ -117,12 +120,13 @@ ul {
 #top {
   height: auto;
   background: LightGray;
-  padding: 90px 1em 1em; }
+  padding: 60px 1em 1em; }
   #top .cursive {
     color: #070707;
     margin-left: .5em; }
   #top label {
-    margin-left: 1em; }
+    margin-left: 1.5em;
+    color: #000 !important; }
   @media only screen and (max-width: 768px) {
     #top .cursive, #top label {
       margin-left: 0; } }

@@ -45,7 +45,10 @@ a:hover {
 }
 
 h1 {
-  font-size: 2.5em
+  font-size: 3em;
+  @include device-lg {
+    font-size: 2.5em;
+  }
 }
 
 ul {
@@ -60,14 +63,17 @@ ul {
 #top {
   height: auto;
   background: color(color1);
-  padding: 90px 1em 1em;
+  padding: 60px 1em 1em;
 
   .cursive {
     color: darken(color(color1), 80);
     margin-left: .5em;
   }
 
-  label { margin-left: 1em }
+  label {
+    margin-left: 1.5em;
+    color: $uicolor !important;
+  }
 
   @include device-lg {
     .cursive, label { margin-left: 0 }
