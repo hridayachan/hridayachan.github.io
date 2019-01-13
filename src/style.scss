@@ -182,7 +182,7 @@ ul {
   &.level {
     margin: 0;
     text-align: left;
-    //align-items: center;
+    align-items: center;
     @include basicflex;
 
     @include device-lg-xl {

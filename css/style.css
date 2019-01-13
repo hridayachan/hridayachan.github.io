@@ -484,7 +484,7 @@
 .clock,
 .minute,
 .hour {
-  animation: appear 3s linear normal 3s 1;
+  animation: appear 3s linear normal 1s 1;
   animation-fill-mode: forwards; }
 
 .seedling {
@@ -698,6 +698,7 @@ ul {
   .level5.level {
     margin: 0;
     text-align: left;
+    align-items: center;
     display: -webkit-flex;
     /* Safari */
     display: flex;

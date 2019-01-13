@@ -2,7 +2,7 @@
 var homeH = $( window ).height(),
 // number of menus
 nom = 5,
-// quick array setup for fake pages
+// quick array setup for pages
 pH = [];
 pH.push("0");
 
