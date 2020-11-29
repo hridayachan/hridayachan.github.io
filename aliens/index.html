@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title>SVG</title>
+
+<style>
+	body {
+		overflow: hidden;
+		background-color: rgb(41,41,41);
+	}
+	#aliens1 {
+		overflow: visible!important;
+		fill: #462d7d;
+		animation: hues 20s infinite;
+	}
+
+	#container {
+		position: absolute;
+		max-height: 100%;
+		left: 100px;
+		right: 100px;
+		top: 0; bottom: 0;
+	}
+
+	#prop-walls {
+		fill: rgb(41,41,41);
+	}
+
+	.head {
+		fill:#9a9a9a;
+		stroke: #080707;
+    	stroke-width: 4px;
+    	stroke-dasharray: 5px;
+	}
+
+	.toggle, .toggle:hover {
+		cursor: pointer;
+	}
+	.areaToggle { /*stroke: red;*/ fill: rgba(0,0,0,0); cursor: pointer;}
+
+
+	#headspin1, #headspin2, #headspin3 {
+		transform: rotate(0deg);
+		transform-origin: 50% 50%;
+		transform-box: fill-box;
+		transition: all .35s ease-in-out;
+		transition-timing-function: cubic-bezier(0.68, -0.55, .27, 1.55);
+	}
+
+	#shirt1, #collar1,
+	#shirt2, #collar2,
+	#shirt3, #collar3 {
+		transform: rotate(0deg);
+		transform-origin: 50% 50%;
+		transform-box: fill-box;
+	}
+
+
+	#shirt1.shaker, #shirt2.shaker, #shirt3.shaker { animation: funkr .5s 1; }
+	#collar1.shaker, #collar2.shaker, #collar3.shaker { animation: funkr 1s 1; }
+
+	#shirt1.shakel, #shirt2.shakel, #shirt3.shakel { animation: funkl .5s 1; }
+	#collar1.shakel, #collar2.shakel, #collar3.shakel { animation: funkl 1s 1; }
+
+	@keyframes funkr {
+		0% { transform: skewY(7.2deg); }
+		100% { transform: skewY(0deg); }
+	}
+	@keyframes funkl {
+		0% { transform: skewY(-7.2deg); }
+		100% { transform: skewY(0deg); }
+	}
+
+
+
+
+	#eye1, #eye2, #eye3 {
+		fill: black;
+		transform: scaleY(1.3);
+	}
+	#glow1, #glow2, #glow3, #eye1, #eye2, #eye3, .ouch {
+    	transform-origin: 50% 50%;
+    	transform-box: fill-box;
+		fill-opacity: 1;
+		opacity: 1;
+	}
+
+	#eye1.ouch .ouch, #glow1.ouch .ouch, 
+	#eye2.ouch .ouch, #glow2.ouch .ouch, 
+	#eye3.ouch .ouch, #glow3.ouch .ouch  {
+		animation: eyeouch .5s 1;
+	}
+
+	#eye1, #glow1 {
+		animation: eyenim1 4s infinite;
+		animation-fill-mode: both;
+	}
+	#eye2, #glow2 {
+		animation: eyenim2 3s infinite;
+		animation-fill-mode: both;
+	}
+	#eye3, #glow3 {
+		animation: eyenim3 5s infinite;
+		animation-fill-mode: both;
+	}
+
+
+	@keyframes eyenim1 {
+		0%, 100% { transform: scaleY(1.3); }
+		53% { transform: scaleY(1.1); }
+		54% { transform: scaleY(.1); }
+		56% { transform: scaleY(1.3); }
+		57% { transform: scaleY(.2); }
+		60% { transform: scaleY(1.1); }
+		89% { transform: scaleY(1.3); }
+	}
+
+	@keyframes eyenim2 {
+		0%, 100% { transform: scaleY(1.3); }
+		28% { transform: scaleY(1.1); }
+		30% { transform: scaleY(.1); }
+		32% { transform: scaleY(1.1); }
+		38% { transform: scaleY(.1); }
+		50% { transform: scaleY(1.1); }
+		90% { transform: scaleY(1.3); }
+	}
+
+	@keyframes eyenim3 {
+		0%, 100% { transform: scaleY(1); }
+		33% { transform: scaleY(1.2); }
+		34% { transform: scaleY(.1); }
+		36% { transform: scaleY(1); }
+		57% { transform: scaleY(.5); }
+		77% { transform: scaleY(.5); }
+		80% { transform: scaleY(1.2); }
+		89% { transform: scaleY(1); }
+	}
+
+	@keyframes eyeouch {
+		0% { transform: scaleY(1.3); }
+		30%, 100% { transform: scaleY(.3); }
+	}
+
+	@keyframes hues {
+		0% { fill: #462d7d; }
+		15% { fill: #7d2d50; }
+		30% { fill: #7d2d2d; }
+		45% { fill: #7d6e2d; }
+		60% { fill: #4a7d2d; }
+		75% { fill: #2d7d70; }
+		90% { fill: #2d407d; }
+	}
+
+	/* --- REGROW HEAD --- */
+
+	#headspin1.regrow, #headspin2.regrow, #headspin3.regrow  {
+		transform: rotate(0deg)!important;
+	}
+	#headspin1.regrow #eye1, #headspin2.regrow #eye2, #headspin3.regrow #eye3,
+	#headspin1.regrow #glow1, #headspin2.regrow #glow2, #headspin3.regrow #glow3,
+	#headspin1.regrow .head, #headspin2.regrow .head , #headspin3.regrow .head {
+		fill-opacity: 0;
+		opacity: 0;
+	}
+	#headspin1:not(.regrow) #eye1,
+	#headspin2:not(.regrow) #eye2,
+	#headspin3:not(.regrow) #eye3 {
+		transition: all 1s ease-in-out;
+		transition-delay: 2s;
+	}
+
+	#headspin1 .neck, #headspin2 .neck, #headspin3 .neck {
+		fill: none;
+		stroke: black;
+		stroke-width: 7px;
+	}
+
+	/*.head { display:none!important; }*/
+
+	.neck, .head {
+		transform: rotate(0deg);
+	}
+
+	.neck { transform-origin: 50% 102%; transform-box: fill-box; }
+	.head { transform-origin: 50% 50%; transform-box: fill-box; }
+
+	.neck {
+		transform: scaleY(.2);
+	}
+	.neck.animate {
+		animation: neckstretch 2s 1;
+		animation-fill-mode: forwards;
+	}
+	.head.animate {
+		transform: scaleX(0.1);
+		animation: headgrow 2s 1;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes neckstretch {
+		0%, 100% { transform: scaleY(.2); }
+		46%, 53% { transform: scaleY(1); }
+	}
+	@keyframes headgrow {
+		0%, 60% { opacity: 0; transform: scaleX(0.1); }
+		100% { opacity: 1; transform: scaleX(1); }
+	}
+
+
+
+	#deadhead { transform-box: fill-box; }
+
+	#deadhead .neck { stroke: none; }
+
+	#deadhead.fall {
+	}
+
+
+</style>
+</head>
+<body>
+	<div id="container">
+
+
+	<!--- xxxxxxxxxxxxxx --->
+	<!--- x            x --->
+	<!--- x  S  V  G   x --->
+	<!--- x            x --->
+	<!--- xxxxxxxxxxxxxx --->
+
+	<svg id="aliens1" width="100%" height="100%" viewBox="0 0 800 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+
+		<rect id="scene" serif:id="scene" x="0" y="0" width="800" height="600" />
+
+		<path id="prop-walls" serif:id="prop-walls" d="M800,372.795l-800,0l0,227.205l800,0l0,-227.205Zm0,-334.236l-800,0l0,-38.559l800,-0l0,38.559Z" />
+
+
+		<!--- ALIEN 1 --->
+
+		<path id="shirt1" serif:id="shirt1" d="M106.101,346.776c-1.185,-9.296 1.789,-19.021 8.921,-26.153l44.328,-24.327c12.232,-12.233 32.095,-12.233 44.327,-0l44.328,24.327c7.132,7.132 10.106,16.857 8.921,26.153l-17.921,253.224l-114.983,0l-17.921,-253.224Z" style="fill:url(#_Linear1);" class="shaker" />
+
+		<path id="collar1" d="M162.983,293.179c10.989,-8.074 26.069,-8.077 37.062,-0.008c-11.156,8.206 -25.943,8.212 -37.062,0.008Z" style="fill:#7a7a7a;" class="shaker" />
+
+		<g id="decor1" class="off">
+
+			<path id="decor1glow" class="decorglow off" d="M181.803,365.265c6.898,-9.042 16.74,-17.168 29.42,-23.711c3.319,-1.712 7.396,-0.602 9.389,2.555c10.494,16.622 12.27,34.248 6.509,50.321c-5.577,15.559 -18.407,29.799 -37.968,39.946c-2.189,1.136 -4.712,1.042 -6.748,-0.062c-2.069,1.113 -4.636,1.188 -6.845,-0.009c-19.194,-10.403 -31.787,-24.57 -37.334,-40.011c-5.728,-15.944 -4.135,-33.383 5.852,-50.043c1.982,-3.308 6.219,-4.466 9.609,-2.626c11.986,6.503 21.409,14.617 28.116,23.64Zm-0.053,13.693c5.836,-12.041 16.921,-22.826 32.774,-31.005c9.188,14.555 10.864,29.973 5.819,44.048c-5.045,14.074 -16.811,26.805 -34.505,35.984c-1.336,-2.113 -2.518,-4.239 -3.548,-6.37c-0.948,2.135 -2.047,4.257 -3.299,6.36c-34.79,-18.855 -46.268,-50.779 -28.738,-80.022c15.01,8.145 25.687,18.976 31.497,31.005Z" style="fill:none;">
+				<animate attributeName="fill-opacity" values=".05;.1;.05;.3;.05;.1" dur="0.5s" repeatCount="indefinite" />
+			</path>
+
+
+			<path d="M214.524,347.953c18.377,29.109 6.703,61.674 -28.686,80.032c-18.686,-29.556 -7.254,-61.489 28.686,-80.032Z" style="fill-opacity:0.25;"/>
+			<path d="M150.253,347.953c34.242,18.58 45.935,51.141 28.738,80.022c-34.79,-18.855 -46.268,-50.779 -28.738,-80.022Z" style="fill-opacity:0.25;"/>
+		</g>
+
+		<g id="headspin1" class="default">
+
+			<path class="head-mirror1" d="M181.75,473.562c-52.684,-0 -37.61,-37.824 -37.61,-84.412c-0,-46.588 21.503,-84.412 37.61,-84.412c16.106,0 36.927,37.824 36.927,84.412c-0,46.588 15.757,84.412 -36.927,84.412Z" style="fill:none;"/>
+
+
+			<path id="neck1" class="neck" d="M182.014,120.776l0,167.535l0,-167.535Z" style="stroke:black"/>
+		
+
+			<path class="head" d="M181.277,107.974c52.684,0 37.61,37.824 37.61,84.412c0,46.588 -21.503,84.412 -37.61,84.412c-16.106,-0 -36.927,-37.824 -36.927,-84.412c0,-46.588 -15.757,-84.412 36.927,-84.412Z" style=""/>
+
+			<!--path id="eye1" class="reg" d="M207.684,179.579c-7.334,-9.939 -16.305,-14.944 -25.5,-14.92c-9.194,0.023 -18.613,5.073 -26.841,15.243c14.668,19.88 35.884,20.018 52.341,-0.323Z"/-->
+
+
+       		<g id="eye1" class="reg">
+       			<g class="ouch">
+            		<path id="eye0" d="M207.684,179.579c-7.334,-9.939 -16.305,-14.944 -25.5,-14.92c-9.194,0.023 -18.613,5.073 -26.841,15.243c14.668,19.88 35.884,20.018 52.341,-0.323Z"/>
+            		<path id="eyebag1" d="M155.092,181.07c7.311,8.942 16.269,13.536 25.458,13.673c9.19,0.136 18.612,-4.183 26.854,-13.065c-14.624,-17.886 -35.828,-18.371 -52.312,-0.608Zm1.371,3.668c6.496,6.49 13.495,11.467 21.69,12.318c8.22,0.854 17.514,-2.494 28.608,-12.136c1.041,-0.906 2.622,-0.795 3.527,0.246c0.905,1.042 0.795,2.622 -0.247,3.527c-12.509,10.873 -23.136,14.299 -32.404,13.336c-9.292,-0.965 -17.344,-6.396 -24.708,-13.754c-0.976,-0.976 -0.977,-2.56 -0.002,-3.536c0.976,-0.976 2.56,-0.977 3.536,-0.001Z" style="fill-opacity:0.35;"/>
+            		<path d="M153.989,160.868c26.124,21.501 35.529,-14.724 54.771,7.208" style="fill:none;stroke:#000;stroke-width:5px;stroke-linecap:round;stroke-miterlimit:1.5;"/>
+
+            		<circle id="glow1" cx="181.514" cy="180.226" r="5.854" style="fill:#fff;">
+						<animate attributeName="r" values="5;5;5;5;6;7;9;9;9;8;9;7;5;5;5;3;5;5;3" dur="4s" repeatCount="indefinite" />
+					</circle>
+
+            	</g>
+        	</g>
+
+		</g>
+
+
+
+
+		<!--- ALIEN 2 --->
+
+		<path id="shirt2" serif:id="shirt2" d="M313.875,318.994c-1.229,-10.212 1.857,-20.895 9.257,-28.73l46,-28.695c12.693,-13.438 33.305,-13.438 45.999,-0l45.999,28.695c7.401,7.835 10.487,18.518 9.257,28.73l-18.597,281.006l-119.318,-0l-18.597,-281.006Z" style="fill:url(#_Linear3);" class="shaker" />
+
+		<g id="decor2" class="off">
+
+			<path id="decor2glow" class="decorglow off" d="M372.404,324.673c3.053,-7.264 7.227,-14.306 12.542,-20.937c1.309,-1.633 3.263,-2.615 5.354,-2.692c2.091,-0.077 4.112,0.76 5.537,2.292c6.333,6.812 11.328,14.278 14.975,22.134c8.52,-0.621 17.394,0.057 26.412,2.17c2.037,0.477 3.766,1.817 4.736,3.671c0.97,1.854 1.086,4.038 0.317,5.984c-2.987,7.562 -6.866,14.417 -11.484,20.481c4.374,6.114 8.048,12.994 10.872,20.57c0.73,1.961 0.572,4.143 -0.434,5.977c-1.006,1.835 -2.761,3.141 -4.807,3.579c-8.354,1.786 -16.603,2.321 -24.566,1.7c-3.053,7.264 -7.226,14.306 -12.542,20.937c-1.309,1.633 -3.263,2.616 -5.354,2.692c-2.091,0.077 -4.112,-0.76 -5.537,-2.292c-6.333,-6.812 -11.327,-14.278 -14.975,-22.133c-8.52,0.621 -17.393,-0.057 -26.411,-2.17c-2.037,-0.477 -3.766,-1.817 -4.736,-3.671c-0.97,-1.854 -1.086,-4.038 -0.317,-5.984c2.988,-7.564 6.868,-14.419 11.484,-20.481c-4.375,-6.115 -8.048,-12.995 -10.873,-20.571c-0.73,-1.961 -0.572,-4.143 0.434,-5.977c1.006,-1.835 2.761,-3.141 4.807,-3.579c8.354,-1.787 16.604,-2.321 24.566,-1.7Zm4.739,7.779c2.865,-8.433 7.33,-16.615 13.421,-24.213c7.047,7.58 12.293,16.039 15.704,24.954c9.343,-1.324 19.23,-0.906 29.313,1.457c-3.454,8.743 -8.204,16.458 -13.973,22.986c5.501,6.631 10.027,14.417 13.31,23.225c-9.521,2.036 -18.893,2.305 -27.798,0.962c-2.866,8.433 -7.331,16.615 -13.422,24.213c-7.047,-7.58 -12.292,-16.039 -15.703,-24.953c-9.344,1.324 -19.23,0.906 -29.313,-1.457c3.455,-8.745 8.206,-16.461 13.973,-22.986c-5.502,-6.632 -10.028,-14.418 -13.311,-23.226c9.523,-2.037 18.897,-2.305 27.799,-0.962Z" style="fill:none;">
+				<animate attributeName="fill-opacity" values=".3;.05;.1;.05;.1;.05" dur="0.6s" repeatCount="indefinite" />
+			</path>
+
+
+			<path d="M434.918,380.861c-37.126,7.941 -71.991,-11.006 -85.574,-47.447c37.127,-7.941 71.992,11.006 85.574,47.447Z" style="fill-opacity:0.26;"/>
+			<path d="M393.698,406.036c-25.851,-27.805 -27.458,-67.453 -3.134,-97.797c25.852,27.805 27.459,67.453 3.134,97.797Z" style="fill-opacity:0.26;"/>
+			<path d="M348.682,379.626c13.95,-35.311 49.034,-53.848 86.899,-44.976c-13.95,35.311 -49.035,53.848 -86.899,44.976Z" style="fill-opacity:0.26;"/>
+		</g>
+
+		<!--path id="colar2" d="M372.838,258.358c11.739,-8.452 27.392,-7.919 38.586,1.611c-11.739,8.452 -27.392,7.919 -38.586,-1.611Z" style="fill:#777;"/-->
+		<path id="collar2" d="M388.745,237.021c0.386,-5.817 1.82,-11.497 4.304,-16.318c1.968,4.517 3.099,9.636 3.394,14.842c1.569,-5.239 3.977,-10.262 7.115,-14.521c1.139,4.96 1.173,10.56 0.23,16.161c4.203,-3.98 8.958,-7.044 13.775,-8.664c-2.043,5.33 -5.199,10.412 -9.007,14.746c4.932,-2.991 10.357,-5.045 15.689,-5.753c-2.528,4.178 -6.024,8.014 -10.072,11.215c5.145,-1.694 10.597,-2.578 15.849,-2.43c-0.553,0.617 -1.137,1.219 -1.75,1.806c0.454,-0.05 0.91,-0.097 1.366,-0.143c12.253,-1.229 24.53,-1.144 34.943,0.471c-9.029,3.189 -19.522,5.536 -30.215,6.896c10.979,0.386 21.697,1.82 30.794,4.304c-8.524,1.968 -18.184,3.099 -28.009,3.394c9.884,1.568 19.365,3.976 27.403,7.115c-11.755,1.431 -25.419,1.118 -38.591,-0.685c4.801,3.264 9.048,6.957 12.343,10.871c-6.847,-1.184 -13.983,-3.644 -20.634,-6.974c5.752,4.84 10.729,10.407 14.188,16.142c-5.834,-1.949 -11.783,-5.035 -17.316,-8.855c4.441,5.33 8.155,11.163 10.642,16.983c-7.46,-3.807 -14.907,-9.907 -21.096,-17.013c0.892,5.883 0.685,11.701 -0.779,16.706c-3.19,-4.784 -5.536,-10.344 -6.897,-16.011c-0.386,5.818 -1.82,11.498 -4.303,16.318c-1.968,-4.517 -3.1,-9.636 -3.395,-14.842c-1.568,5.238 -3.976,10.262 -7.114,14.521c-1.253,-5.453 -1.17,-11.682 0.08,-17.832c-1.104,1.173 -2.243,2.314 -3.408,3.417c-6.152,5.819 -13.072,10.572 -19.827,13.34c3.221,-6.157 7.746,-12.199 12.949,-17.513c-6.366,3.996 -13.189,7.032 -19.707,8.572c3.64,-4.958 8.397,-9.679 13.726,-13.779c-6.433,2.599 -13.122,4.351 -19.424,4.939c2.901,-2.916 6.327,-5.661 10.088,-8.139c-12.437,1.289 -24.929,1.226 -35.5,-0.414c9.028,-3.189 19.522,-5.536 30.215,-6.896c-10.977,-0.386 -21.696,-1.82 -30.794,-4.304c8.524,-1.968 18.184,-3.099 28.009,-3.394c-9.887,-1.569 -19.366,-3.977 -27.403,-7.115c10.86,-1.322 23.35,-1.156 35.578,0.299c0.967,0.115 1.933,0.239 2.896,0.37c-2.359,-1.942 -4.447,-4.047 -6.169,-6.268c6.067,0.593 12.297,2.367 18.024,4.997c-4.803,-4.12 -8.854,-8.987 -11.528,-14.127c5.098,1.392 10.212,3.845 14.897,7.023c-3.588,-4.685 -6.483,-9.897 -8.275,-15.191c5.271,2.479 10.416,6.415 14.869,11.19c-0.685,-5.458 -0.411,-10.815 0.951,-15.468c3.189,4.784 5.536,10.344 6.896,16.011Zm-9.902,21.18c3.944,-2.066 8.435,-3.058 12.889,-2.974c4.454,0.085 8.871,1.246 12.665,3.488c-7.619,6.018 -18.129,5.85 -25.554,-0.514Z" style="fill:#777;" class="shaker"/>
+							
+		<g id="headspin2" class="default">
+
+			<path class="head-mirror2" d="M392.391,
+			438.874c-57.882,0 -41.321,-37.823 -41.321,-84.412c0,-46.588 23.625,-84.411 41.321,-84.411c17.695,-0 40.57,37.823 40.57,84.411c-0,46.589 17.312,84.412 -40.57,84.412Z" style="fill:none;"/>
+
+
+			<path id="neck2" class="neck" d="M392.631,85.637l-0,168.29l-0,-168.29Z" style="stroke:black"/>
+
+
+			<path class="head" d="M391.872,74.216c57.881,0 41.32,37.824 41.32,84.412c0,46.588 -23.625,84.412 -41.32,84.412c-17.696,-0 -40.57,-37.824 -40.57,-84.412c-0,-46.588 -17.312,-84.412 40.57,-84.412Z" style=""/>
+
+			<!--path id="eye2" d="M366.023,136.754c7.942,-8.387 17.21,-12.317 26.385,-11.785c9.175,0.532 18.258,5.525 25.832,14.983c-15.886,16.775 -37.069,15.717 -52.217,-3.198Z"/-->
+
+			<g id="eye2" class="reg">
+				<g class="ouch">
+					<path id="eyebag2" d="M365.348,137.804c7.106,9.106 15.957,13.903 25.14,14.248c9.184,0.345 18.702,-3.758 27.144,-12.451c-14.214,-18.214 -35.401,-19.181 -52.284,-1.797Zm1.287,3.698c6.346,6.637 13.23,11.771 21.405,12.809c8.197,1.04 17.566,-2.096 28.876,-11.484c1.061,-0.881 2.639,-0.735 3.52,0.327c0.881,1.062 0.735,2.639 -0.327,3.521c-12.753,10.586 -23.455,13.769 -32.699,12.596c-9.267,-1.177 -17.194,-6.79 -24.389,-14.313c-0.954,-0.997 -0.918,-2.581 0.079,-3.535c0.997,-0.954 2.581,-0.918 3.535,0.079Z" style="fill:black;fill-opacity:0.35;"/>
+
+					<path d="M366.023,136.754c7.942,-8.387 17.21,-12.317 26.385,-11.785c9.175,0.532 18.258,5.525 25.832,14.983c-15.886,16.775 -37.069,15.717 -52.217,-3.198Zm1.634,-3.558c6.951,-6.001 14.293,-10.456 22.529,-10.709c8.259,-0.254 17.286,3.761 27.649,14.185c0.973,0.979 2.557,0.983 3.535,0.011c0.979,-0.973 0.984,-2.557 0.011,-3.536c-11.686,-11.754 -22.035,-15.944 -31.349,-15.657c-9.337,0.287 -17.763,5.118 -25.643,11.921c-1.044,0.902 -1.16,2.482 -0.258,3.526c0.901,1.045 2.481,1.161 3.526,0.259Z"/>
+
+
+					<circle id="glow2" cx="392.131" cy="138.838" r="5.854" style="fill:#fff;">
+						<animate attributeName="r" values="5;7;7;7;7;7;7;7;8;9;8;9;8;9;8;9;8;9;8;9;8;9;8;5;7;7;7;7;7;7;7;7;7" dur="3s" repeatCount="indefinite" />
+					</circle>
+				</g>
+			</g>
+
+		</g>
+
+
+
+		<!--- ALIEN 3 --->
+
+		<path id="shirt3" serif:id="shirt3" d="M527.363,346.773c-1.308,-9.296 1.975,-19.02 9.848,-26.151l48.938,-24.327c13.505,-12.232 35.433,-12.232 48.938,0l48.937,24.327c7.873,7.131 11.157,16.855 9.849,26.151l-19.785,253.227l-126.94,-0l-19.785,-253.227Z" style="fill:url(#_Linear2);" class="shaker"/>
+
+		<g id="decor3" class="off">
+
+
+			<path id="decor3glow" class="decorglow off" d="M580.305,356.551c0.275,-1.646 1.12,-3.189 2.462,-4.32c11.348,-9.562 23.596,-12.951 35.06,-10.912c11.271,2.005 22.044,9.362 30.451,22.398c0.6,0.931 0.964,1.963 1.09,3.015c6.553,3.545 12.771,7.845 18.509,12.877c1.663,1.458 2.563,3.599 2.442,5.808c-0.121,2.208 -1.251,4.238 -3.063,5.506c-35.466,24.796 -80.067,17.978 -108.354,-17.331c-1.403,-1.751 -1.909,-4.056 -1.37,-6.234c0.54,-2.178 2.064,-3.979 4.122,-4.873c6.042,-2.622 12.293,-4.597 18.651,-5.934Zm9.232,5.757c-8.553,1.047 -16.983,3.295 -25.016,6.782c25.75,32.142 66.325,38.504 98.609,15.932c-7.003,-6.141 -14.776,-11.107 -23.01,-14.859c0.707,-0.812 1.409,-1.659 2.107,-2.544c-7.129,-11.054 -16.103,-17.511 -25.661,-19.211c-9.558,-1.7 -19.698,1.356 -29.16,9.329c0.685,1.598 1.397,3.123 2.131,4.571Z" style="fill:none;">
+				<animate attributeName="fill-opacity" values=".3;.05;.1;.05;.1;.05;.1;.03" dur="0.4s" repeatCount="indefinite" />
+			</path>
+
+
+			<path d="M589.537,362.308c-0.734,-1.448 -1.446,-2.973 -2.131,-4.571c9.462,-7.973 19.602,-11.029 29.16,-9.329c9.558,1.7 18.532,8.157 25.661,19.211c-0.698,0.885 -1.4,1.732 -2.107,2.544c8.234,3.752 16.007,8.718 23.01,14.859c-32.284,22.572 -72.859,16.21 -98.609,-15.932c8.033,-3.487 16.463,-5.735 25.016,-6.782Z" style="fill-opacity:0.34;"/>
+
+		</g>
+
+		<path id="collar3" d="M590.697,291.765c12.296,-6.442 28.01,-6.188 39.841,0.801c-11.879,9.383 -28.265,9.121 -39.841,-0.801Z" style="fill:#777;" class="shaker"/>
+
+		<g id="headspin3" class="default">
+			
+			<path class="head-mirror3" d="M610.933,473.603c-70.27,-0 -50.165,-37.824 -50.165,-84.412c0,-46.588 28.682,-84.412 50.165,-84.412c21.483,0 49.253,37.824 49.253,84.412c0,46.588 21.017,84.412 -49.253,84.412Z" style="fill:none;"/>
+
+
+			<path id="neck3" class="neck" d="M611.118,116.798l0,171.513l0,-171.513Z" style="stroke:black"/>
+
+
+			<path class="head" d="M610.302,107.974c70.271,0 50.165,37.824 50.165,84.412c-0,46.588 -28.682,84.412 -50.165,84.412c-21.483,-0 -49.253,-37.824 -49.253,-84.412c0,-46.588 -21.017,-84.412 49.253,-84.412Z" style=""/>
+
+			<g id="eye3" class="reg">
+
+				<g class="ouch">
+        			<path id="eyebag3" d="M577.971,171.242c8.017,12.889 18.523,19.895 29.793,20.766c11.271,0.872 23.305,-4.392 34.383,-16.041c-16.034,-25.779 -42.022,-28.025 -64.176,-4.725Zm1.27,8.978c8.049,8.8 16.705,15.597 26.964,16.739c10.302,1.146 21.954,-3.514 36.012,-16.642c1.613,-1.507 4.147,-1.42 5.653,0.194c1.507,1.613 1.421,4.146 -0.193,5.653c-16.413,15.328 -30.328,20.084 -42.357,18.746c-12.073,-1.344 -22.51,-8.934 -31.982,-19.29c-1.49,-1.629 -1.378,-4.161 0.251,-5.651c1.629,-1.49 4.161,-1.378 5.652,0.251Z" style="fill:black;fill-opacity:0.37;"/>
+
+        			<path id="eye3" d="M578.519,171.561c9.765,-11.621 21.159,-17.065 32.439,-16.328c11.28,0.737 22.446,7.655 31.758,20.758c-19.53,23.243 -45.573,21.778 -64.197,-4.43Zm2.531,-8.707c9.217,-7.568 18.75,-13.068 29.067,-12.742c10.361,0.327 21.234,6.593 33.286,21.583c1.383,1.721 3.903,1.994 5.624,0.611c1.72,-1.383 1.994,-3.903 0.611,-5.624c-14.073,-17.502 -27.171,-24.185 -39.269,-24.566c-12.141,-0.384 -23.55,5.649 -34.396,14.555c-1.706,1.401 -1.954,3.924 -0.553,5.63c1.401,1.706 3.924,1.954 5.63,0.553Z"/>
+
+        			<circle id="glow3" cx="610.618" cy="174.262" r="5.854" style="fill:#fff;">
+        				<animate attributeName="r" values="5;6;5;8;10;10;10;10;10;9;10;9;10;9;10;9;10;9;10;9;10;9;4;9;4;3;4;5;4;5;4;5;4;5;5;5;5;5;5;5;5;5" dur="4s" repeatCount="indefinite" />
+        			</circle>
+        		</g>
+
+    		</g>
+
+
+		</g>
+
+
+		<!--- TOGGLE AREAS --->
+
+		<circle id="left1" class="areaToggle" r="40" cx="120" cy="340"></circle>
+		<circle id="right1" class="areaToggle" r="40" cx="240" cy="340"></circle>
+
+		<circle id="left2" class="areaToggle" r="40" cx="320" cy="320"></circle>
+		<circle id="right2" class="areaToggle" r="40" cx="460" cy="320"></circle>
+
+		<circle id="left3" class="areaToggle" r="40" cx="540" cy="340"></circle>
+		<circle id="right3" class="areaToggle" r="40" cx="680" cy="340"></circle>
+
+
+
+		<!--- SHIRT (WAT?) --->
+		<defs>
+			<linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(9.50409e-15,-155.214,370.884,2.27101e-14,181.514,533.565)"><stop offset="0" style="stop-color:#292929;stop-opacity:1"/><stop offset="1" style="stop-color:#545454;stop-opacity:1"/></linearGradient>
+			<linearGradient id="_Linear2" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1.04925e-14,-155.208,409.454,2.27093e-14,610.618,533.557)"><stop offset="0" style="stop-color:#292929;stop-opacity:1"/><stop offset="1" style="stop-color:#545454;stop-opacity:1"/></linearGradient>
+			<linearGradient id="_Linear3" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(9.86246e-15,-170.508,384.869,2.49478e-14,392.131,522.218)"><stop offset="0" style="stop-color:#292929;stop-opacity:1"/><stop offset="1" style="stop-color:#545454;stop-opacity:1"/></linearGradient>
+		</defs>
+
+	</svg>
+
+	<!--- xxxxxxxxxxxxxxxx --->
+	<!--- x              x --->
+	<!--- x  / S  V  G   x --->
+	<!--- x              x --->
+	<!--- xxxxxxxxxxxxxxxx --->
+
+
+
+	</div>
+
+	<script src="jquery.min.js"></script>
+	<script>
+
+	$(document).ready(function(){
+
+
+		// ... need randoms
+		// ... -180/+180 not 360, see last function to grab angles
+
+		var ang = 19;
+		var limitP = 59;
+		var limitN = -59;
+
+		var newrot1, newrot2, newrot3;
+
+
+		// --- junk
+
+		var eye1 = $('#eye1');
+		var glow1 = $('#glow1');
+
+		var eye2 = $('#eye2');
+		var glow2 = $('#glow2');
+
+		var eye3 = $('#eye3');
+		var glow3 = $('#glow3');
+
+		var head1 = $('#headspin1');
+		var shirt1 = $('#shirt1');
+		var collar1 = $('#collar1');
+		var deco1 = $('#decor1');
+
+		var head2 = $('#headspin2');
+		var shirt2 = $('#shirt2');
+		var collar2 = $('#collar2');
+		var deco2 = $('#decor2');
+
+		var head3 = $('#headspin3');
+		var shirt3 = $('#shirt3');
+		var collar3 = $('#collar3');
+		var deco3 = $('#decor3');
+
+
+		// --- chop time
+
+		var headcount = 0;
+
+		function chop(masterHead, masterRot, masterKick, masterGrow) {
+
+			// --- off with their heads
+
+			$(masterHead).find('.neck, .head').removeClass('animate');
+
+			var deadhead = $(masterHead).clone().attr('id', 'deadhead deadhead-'+headcount+'');
+			headcount++;
+
+
+			$(deadhead).addClass('fall');
+			$('#aliens1').append(deadhead);
+
+
+			$(deadhead).find('.ouch').css('transform' , 'scaleY(.3)');
+			$(deadhead).find('.neck').attr('stroke', 'none');
+
+			
+
+
+			// --- rolling on the floor laughing
+
+			masterKick == "right1" ? $(deadhead).css('transform-origin', '5% 64%') : '';
+			masterKick == "left1" ? $(deadhead).css('transform-origin', '36% 70%') : '';
+
+			masterKick == "right2" ? $(deadhead).css('transform-origin', '30% 64%') : '';
+			masterKick == "left2" ? $(deadhead).css('transform-origin', '70% 70%') : '';
+
+			masterKick == "right3" ? $(deadhead).css('transform-origin', '55% 70%') : '';
+			masterKick == "left3" ? $(deadhead).css('transform-origin', '94% 70%') : '';
+
+
+			// --- regrow another
+
+			$(masterHead)
+				.addClass('regrow');
+
+			$(masterGrow)
+				.toggleClass('toggle on off')
+				.click(function(){
+					grow(masterHead, masterGrow);
+				});
+
+			$(masterGrow).find('path')
+				.css('fill-opacity', '1');
+
+			$(masterGrow).find('.decorglow')
+				.css('fill', 'white');				
+				
+
+		};
+
+		function grow(masterHead, masterGrow) {
+
+			$(masterHead)
+				.removeClass('regrow')
+				.css('transform', 'rotate(0deg)')
+				.find('.neck, .head')
+					.addClass('animate');
+
+
+			$(masterGrow).find('path')
+				.css('fill-opacity', '.3');
+
+			$(masterGrow).find('.decorglow')
+				.css('fill', 'none');
+		};
+
+
+		// xxxxxxx
+		// xxxxxxx ---- ALIEN 1 CUSTOM
+		// xxxxxxx
+
+		$('#right1').hover(function(){ $(shirt1).add(collar1).toggleClass('shaker shakel'); });
+		$('#left1').hover(function(){ $(shirt1).add(collar1).toggleClass('shaker shakel'); });
+
+
+		$('#right1').click(function(){
+
+			newrot1 = getRotationDegrees(head1);
+
+			$(head1)
+				.css('transform', 'rotate('+(newrot1+ang)+'deg)');
+
+			$(shirt1).add(collar1)
+				.toggleClass('shaker shakel');
+
+			newrot1 > limitP ? chop(head1, newrot1, 'right1', deco1) : $(eye1).add(glow1).toggleClass('ouch');
+
+		});
+
+		$('#left1').click(function(){
+
+			newrot1 = getRotationDegrees(head1);
+
+			$(head1)
+				.css('transform', 'rotate('+(newrot1-ang)+'deg)');
+
+			$(shirt1).add(collar1)
+				.toggleClass('shaker shakel');
+
+			newrot1 < limitN ? chop(head1, newrot1, 'left1', deco1) : $(eye1).add(glow1).toggleClass('ouch');
+
+
+		});
+
+
+		// xxxxxxx
+		// xxxxxxx ---- ALIEN 2 CUSTOM 
+		// xxxxxxx
+
+		$('#right2').hover(function(){ $(shirt2).add(collar2).toggleClass('shaker shakel'); });
+		$('#left2').hover(function(){ $(shirt2).add(collar2).toggleClass('shaker shakel'); });
+
+		$('#right2').click(function(){
+
+			newrot2 = getRotationDegrees(head2);
+
+			$(head2)
+				.css('transform', 'rotate('+(newrot2+ang)+'deg)');
+
+			$(shirt2).add(collar2)
+				.toggleClass('shaker shakel');
+
+			newrot2 > limitP ? chop(head2, newrot2, 'right2', deco2) : $(eye2).add(glow2).toggleClass('ouch');
+		});
+
+		$('#left2').click(function(){
+			newrot2 = getRotationDegrees(head2);
+
+			$(head2)
+				.css('transform', 'rotate('+(newrot2-ang)+'deg)');
+
+			$(shirt2).add(collar2)
+				.toggleClass('shaker shakel');
+
+			newrot2 < limitN ? chop(head2, newrot2, 'left2', deco2) : $(eye2).add(glow2).toggleClass('ouch');
+		});
+
+
+
+		// xxxxxxx
+		// xxxxxxx ---- ALIEN 3 CUSTOM 
+		// xxxxxxx
+
+		$('#right3').hover(function(){ $(shirt3).add(collar3).toggleClass('shaker shakel'); });
+		$('#left3').hover(function(){ $(shirt3).add(collar3).toggleClass('shaker shakel'); });
+
+		$('#right3').click(function(){
+
+			newrot3 = getRotationDegrees(head3);
+
+			$(head3)
+				.css('transform', 'rotate('+(newrot3+ang)+'deg)');
+
+			$(shirt3).add(collar3)
+				.toggleClass('shaker shakel');
+
+			newrot3 > limitP ? chop(head3, newrot3, 'right3', deco3) : $(eye3).add(glow3).toggleClass('ouch');
+
+		});
+
+		$('#left3').click(function(){
+
+			newrot3 = getRotationDegrees(head3);
+
+			$(head3)
+				.css('transform', 'rotate('+(newrot3-ang)+'deg)');
+
+			$(shirt3).add(collar3)
+				.toggleClass('shaker shakel');
+
+			newrot3 < limitN ? chop(head3, newrot3, 'left3', deco3) : $(eye3).add(glow3).toggleClass('ouch');
+		});
+
+
+
+
+
+		// --- GRAB ANGLE
+		function getRotationDegrees(obj) {
+			var matrix = obj.css("transform");
+			if(matrix !== 'none') {
+				var values = matrix.split('(')[1].split(')')[0].split(',');
+				var a = values[0];
+				var b = values[1];
+				var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+			} else { var angle = 0; }
+			return (angle < 180) ? angle : -angle;
+		};
+
+
+
+	});
+	</script>
+</body>
+</html>
