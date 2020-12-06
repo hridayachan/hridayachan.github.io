@@ -473,14 +473,15 @@
 
 			if (pointSK > 9) {
 				$('#SKWINscaleW0to150').add('#SKpoint').addClass('on');
+				lockMe = true;
 			};
 			if (pointFL > 9) {
 				$('#FLWINscaleW0to150').add('#FLpoint').addClass('on');
+				lockMe = true;
 			};
 
 			if(pointFL > 10 || pointSK > 10) {
 				restartGame();
-				lockMe = true;
 			};
 						
 
