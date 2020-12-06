@@ -321,7 +321,7 @@
 			}
 		</style>
 
-		<g id="HEADrotate50to-16" class="toggle">
+		<g id="HEADrotate50to-16" class="toggle mental">
 
 		    <path id="skull" d="M229.246,141.441c1.294,-7.621 0.041,-18.231 7.012,-29.319c6.971,-11.087 20.03,-20.032 37.848,-17.473c17.818,2.559 31.477,20.661 32.263,38.493c0.786,17.832 -3.614,29.149 -14.497,35.728c-10.883,6.578 -12.324,7.104 -12.985,12.978c-0.661,5.875 3.639,8.972 -2.828,11.769c-6.467,2.797 -19.909,12.214 -36.7,9.263c-16.791,-2.951 -25.86,-10.938 -25.94,-17.702c-0.08,-6.765 -1.654,-10.497 4.379,-11.804c6.032,-1.307 5.454,-3.469 6.959,-7.376c1.505,-3.907 -1.644,-6.777 -3.496,-10.378c-1.853,-3.602 -0.087,-4.896 2.398,-7.517c2.485,-2.621 4.612,-0.921 5.587,-6.662Z" style="fill:#000;"/>
 
@@ -441,9 +441,11 @@
 		// ---------------
 
 		var luck = new Array;
+		var shmuck = new Array;
+		
 		for(var x=0; x<24; x++) {
 			for(var y=0; y<15; y++) {
-				x%2==1 ? '' : luck.push(x*15+y);
+				x%2==1 ? luck.push(x*15+y) : shmuck.push(x*15+y);
 			};
 		};
 
@@ -452,15 +454,15 @@
 		// ---------------
 
 		function restartGame() {
-			$('#skull-points path').add('#flower-points path').css('display', 'none');
-			$('#SKWINscaleW0to150').add('#SKpoint').removeClass('on');
-			$('#FLWINscaleW0to150').add('#FLpoint').removeClass('on');
-			$('#TITglowR, #TITglowL').toggleClass('shaker shakel');
-			pointSK = 0;
-			pointFL = 0;
+			$('#skull-points path').add('#flower-points path')
+				.css('display', 'none');
+			$('#SKWINscaleW0to150').add('#SKpoint').add('#FLWINscaleW0to150').add('#FLpoint')
+				.removeClass('on');
+			$('#TITglowR, #TITglowL')
+				.toggleClass('shaker shakel');
+			pointSK = pointFL = 0;
 			lockMe = false;
 		};
-
 
 		var pointSK = 0, pointFL = 0;
 		var lockMe = false;
@@ -470,7 +472,7 @@
 		// --- APROACH
 		// ---------------
 
-		var svgp = $('svg');
+		var karma;
 		var touch = $('#TOUCHarea');
 		var touch2 = $('#TOUCHarea2');
 
@@ -513,13 +515,16 @@
 
 		$('#BODYwhole').add('#HEADrotate50to-16').click(function(){
 
+			
+			$(this).hasClass('mental') ? karma = luck : karma = shmuck;
+
 			$('.luggage').remove();
 			$('#TITglowR, #TITglowL').toggleClass('shaker shakel');
 
 			if ( !lockMe ) {
 				var newPos = getRotationDegrees( $('#NOWrotate'));
 
-				if ( luck.indexOf(newPos) == -1 ) {
+				if ( karma.indexOf(newPos) == -1 ) {
 					$('#SKpop').clone().attr('id', '').appendTo('#SK').toggleClass('on off').addClass('luggage');
 					pointSK++;
 
