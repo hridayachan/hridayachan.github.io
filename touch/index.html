@@ -434,6 +434,16 @@
 
 
 	<script>
+	
+	// ---------------
+	// --- SOUND FX 
+	// ---------------
+	var giggle = new Audio("../fx/BRS_Baby_Grunt_Pleasant.wav");
+	var grunt = new Audio("../fx/BRS_Creature_Large_Grunt_Effort_Huff_3.wav");
+	var light = new Audio("../fx/ESM_One_Shot_Vocal_Gnoll_Monster_Giggle_Wolf_Hyena_Dog_Creature_.wav");
+	var dark = new Audio("../fx/SPLC-5203_FX_Oneshot_Animal_Tiger_Single_Roars.wav")
+
+
 	$(document).ready(function(){
 
 		// ---------------
@@ -442,7 +452,7 @@
 
 		var luck = new Array;
 		var shmuck = new Array;
-		
+
 		for(var x=0; x<24; x++) {
 			for(var y=0; y<15; y++) {
 				x%2==1 ? luck.push(x*15+y) : shmuck.push(x*15+y);
@@ -514,7 +524,6 @@
 		// ---------------
 
 		$('#BODYwhole').add('#HEADrotate50to-16').click(function(){
-
 			
 			$(this).hasClass('mental') ? karma = luck : karma = shmuck;
 
@@ -526,10 +535,12 @@
 
 				if ( karma.indexOf(newPos) == -1 ) {
 					$('#SKpop').clone().attr('id', '').appendTo('#SK').toggleClass('on off').addClass('luggage');
+					grunt.play();
 					pointSK++;
 
 				} else {
 					$('#FLpop').clone().attr('id', '').appendTo('#FL').toggleClass('on off').addClass('luggage');
+					giggle.play();
 					pointFL++;
 				};
 			};
@@ -537,14 +548,23 @@
 			pointSK < 11 ? $('#skull-points path:nth-child('+pointSK+')').css('display', 'block') : restartGame();
 			pointFL < 11 ? $('#flower-points path:nth-child('+pointFL+')').css('display', 'block') : restartGame();
 
+
+
+			// --- BIG SPOON, LITTLE SPOON
+
 			if (pointSK == 10) {
 				$('#SKWINscaleW0to150').add('#SKpoint').addClass('on');
+				$('#yall').add('#BODYcolor').addClass('SK');
+				dark.play();
 				lockMe = true;
+				
 			};
 			if (pointFL == 10) {
 				$('#FLWINscaleW0to150').add('#FLpoint').addClass('on');
+				$('#yall').add('#BODYcolor').addClass('FL');
+				light.play();
 				lockMe = true;
-			};			
+			};
 
 		});
 
