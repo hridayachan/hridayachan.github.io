@@ -272,7 +272,7 @@
 		<!--- x		BODY 		-->
 		<!--- x            		-->
 		<style>
-			#BODYmask, #TOUCHarea, #TOUCHarea2, #TITglowR, #TITglowL, #FACEmask#FACE, #SPINeye, #eye  { pointer-events: none; }
+			#BODYmask, #TOUCHarea, #TOUCHarea2, #TITglowR, #TITglowL, #FACEmask, #FACE, #SPINeye, #eye  { pointer-events: none; }
 		</style>
 
 		<g id="BODYfull">
@@ -511,28 +511,20 @@
 		// --- TOUCH
 		// ---------------
 
-		$('#BODYwhole').click(function(){
+		$('#BODYwhole').add('#HEADrotate50to-16').click(function(){
 
-			$('.del').remove();
+			$('.luggage').remove();
 			$('#TITglowR, #TITglowL').toggleClass('shaker shakel');
 
 			if ( !lockMe ) {
 				var newPos = getRotationDegrees( $('#NOWrotate'));
 
 				if ( luck.indexOf(newPos) == -1 ) {
-					$('#SKpop')
-						.clone().attr('id', '')
-						.appendTo('#SK')
-						.toggleClass('on off')
-						.addClass('del');
+					$('#SKpop').clone().attr('id', '').appendTo('#SK').toggleClass('on off').addClass('luggage');
 					pointSK++;
 
 				} else {
-					$('#FLpop')
-						.clone().attr('id', '')
-						.appendTo('#FL')
-						.toggleClass('on off')
-						.addClass('del');
+					$('#FLpop').clone().attr('id', '').appendTo('#FL').toggleClass('on off').addClass('luggage');
 					pointFL++;
 				};
 			};
@@ -540,11 +532,11 @@
 			pointSK < 11 ? $('#skull-points path:nth-child('+pointSK+')').css('display', 'block') : restartGame();
 			pointFL < 11 ? $('#flower-points path:nth-child('+pointFL+')').css('display', 'block') : restartGame();
 
-			if (pointSK > 9) {
+			if (pointSK == 10) {
 				$('#SKWINscaleW0to150').add('#SKpoint').addClass('on');
 				lockMe = true;
 			};
-			if (pointFL > 9) {
+			if (pointFL == 10) {
 				$('#FLWINscaleW0to150').add('#FLpoint').addClass('on');
 				lockMe = true;
 			};			
