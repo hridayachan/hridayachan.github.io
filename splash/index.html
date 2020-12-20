@@ -558,18 +558,23 @@
 	// --- SOUND FX 
 	// ---------------
 	var sliming = new Audio("../fx/SUT_AUX_SLIME_8.wav");
-	var grunt = new Audio("../fx/");
+	var water = new Audio("../fx/EX_Himalayas_seven_sisters_waterfall_gentle_water.wav");
+	var splash = false;
 
+	water.addEventListener('ended', function() {
+		this.currentTime = 0;
+		this.play();
+	}, false);
 
+	water.volume = 0.2;
+	
 
-		
 
 	//var path = document.querySelector(".PATH3");
 	//var l = path.getTotalLength();
 	//console.log( l );
 
 	$(document).ready(function(){
-
 
 		// --- LEFT
 		$('#lava1').find('animate').attr('dur', '150ms');
@@ -584,6 +589,11 @@
 		$('#glow1b2, #glow1c2, #glow2b2, #lava2b').attr('dur', '300ms');
 
 		addClickR();
+
+		function soundStart(splash) {
+			splash ? '' : water.play();
+			splash ? '' : splash=true;
+		}
 		
 
 		function addClickL() {
@@ -601,8 +611,12 @@
 				
 				$('#rock2').css('pointer-events', 'all').addClass('glow');
 				$(this).css('pointer-events', 'none').removeClass('glow');
+
 				addClickL();
+				soundStart(splash);
 				sliming.play();
+
+				
 			});
 		};
 		function addClickR() {
@@ -620,7 +634,9 @@
 
 				$('#rock1').css('pointer-events', 'all');
 				$(this).css('pointer-events', 'none').removeClass('glow');
+
 				addClickR();
+				soundStart(splash);
 				sliming.play();
 			});
 		};
