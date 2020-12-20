@@ -30,7 +30,11 @@
 
 		g, path, ellipse {
 			transform-origin: 50% 50%;
+			-webkit-transform-origin: 50% 50%;;
+			-moz-transform-origin: 50% 50%;
+
 			transform-box: fill-box;
+
 			transition-timing-function: cubic-bezier(0.68, -0.55, .27, 1.55);
 		}
 
@@ -40,6 +44,16 @@
 			fill: #462d7d;
 			animation: hues 20s infinite;
 		}
+
+		/* @keyframes duration | timing-function | delay | 
+		 iteration-count | direction | fill-mode | play-state | name */
+		/*  animation: 3s ease-in 1s 2 reverse both paused slidein; */
+
+		/* @keyframes duration | timing-function | delay | name */
+		/*  animation: 3s linear 1s slidein; */
+
+		/* @keyframes duration | name */
+		/*  animation: 3s slidein; */
 
 		@keyframes hues {
 			0% { fill: #462d7d; }
@@ -89,24 +103,18 @@
 		/* --- LEFT TO RIGHT --- */
 
 		#LAVA .PATH1.go, #LAVALIGHT .PATH4.go {
-			animation: dash 1.2s ease-out;
+			animation: dash .8s ease-out;
 			animation-delay: 145ms;
 			
 		}
 		#LAVA .PATH2.go, #LAVALIGHT .PATH5.go  {
-			animation: dash 1.2s ease-out;
+			animation: dash .8s ease-out;
 			animation-delay: 150ms;
 			
 		}
 		#LAVA .PATH3.go, #LAVALIGHT .PATH6.go {
-			animation: dash 1.2s ease-out;
+			animation: dash .8s ease-out;
 			animation-delay: 155ms;
-		}
-
-		/* -- arch movement (left to right)-- */
-		@keyframes dash {
-			0% { stroke-dashoffset: 340; }
-			100% { stroke-dashoffset: -1170;}
 		}
 
 
@@ -115,21 +123,21 @@
 		#LAVAClone, #LAVAglowClone { transform: scale(-1, 1); }
 
 		#LAVA2 .PATH1.go, #LAVALIGHT2 .PATH4.go {
-			animation: dash .8s ease-out;
-			animation-delay: 350ms;
+			animation: dash .6s ease-out;
+			animation-delay: 500ms;
 			
 		}
 		#LAVA2 .PATH2.go, #LAVALIGHT2 .PATH5.go {
-			animation: dash .8s ease-out;
-			animation-delay: 340ms;
+			animation: dash .6s ease-out;
+			animation-delay: 500ms;
 			
 		}
 		#LAVA2 .PATH3.go, #LAVALIGHT2 .PATH6.go {
-			animation: dash .8s ease-out;
-			animation-delay: 360ms;
+			animation: dash .6s ease-out;
+			animation-delay: 500ms;
 		}
 
-		/* -- arch movement (right to left)-- */
+		/* -- arch movement-- */
 		@keyframes dash {
 			0% { stroke-dashoffset: 340; }
 			100% { stroke-dashoffset: -1170;}
@@ -546,6 +554,16 @@
 	<script src="../js/jquery.min.js"></script>
 	<script>
 
+	// ---------------
+	// --- SOUND FX 
+	// ---------------
+	var sliming = new Audio("../fx/SUT_AUX_SLIME_8.wav");
+	var grunt = new Audio("../fx/");
+
+
+
+		
+
 	//var path = document.querySelector(".PATH3");
 	//var l = path.getTotalLength();
 	//console.log( l );
@@ -584,6 +602,7 @@
 				$('#rock2').css('pointer-events', 'all').addClass('glow');
 				$(this).css('pointer-events', 'none').removeClass('glow');
 				addClickL();
+				sliming.play();
 			});
 		};
 		function addClickR() {
@@ -602,6 +621,7 @@
 				$('#rock1').css('pointer-events', 'all');
 				$(this).css('pointer-events', 'none').removeClass('glow');
 				addClickR();
+				sliming.play();
 			});
 		};
 
