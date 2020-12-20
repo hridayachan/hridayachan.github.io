@@ -443,8 +443,22 @@
 	var light = new Audio("../fx/ESM_One_Shot_Vocal_Gnoll_Monster_Giggle_Wolf_Hyena_Dog_Creature_.wav");
 	var dark = new Audio("../fx/SPLC-5203_FX_Oneshot_Animal_Tiger_Single_Roars.wav");
 
+	var atmos = new Audio("../fx/pmt_drum_loop_clock_percussion_122.wav");
+	var mood = false;
+
+	atmos.addEventListener('ended', function() {
+		this.currentTime = 0;
+		this.play();
+	}, false);
+
+	atmos.volume = .1;
 
 	$(document).ready(function(){
+
+		function soundStart(mood) {
+			mood ? '' : atmos.play();
+			mood ? '' : mood=true;
+		};
 
 		// ---------------
 		// --- LUCK 
@@ -557,6 +571,7 @@
 				$('#yall').add('#BODYcolor').addClass('SK');
 				dark.play();
 				lockMe = true;
+				atmos.pause();
 				
 			};
 			if (pointFL == 10) {
@@ -564,6 +579,7 @@
 				$('#yall').add('#BODYcolor').addClass('FL');
 				light.play();
 				lockMe = true;
+				atmos.pause();
 			};
 
 		});
@@ -573,6 +589,9 @@
 		// ---------------
 
 		function getRotationDegrees(obj) {
+
+			soundStart(mood);
+
 			var matrix = obj.css("transform");
 			if(matrix !== 'none') {
 				var values = matrix.split('(')[1].split(')')[0].split(',');

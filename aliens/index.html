@@ -415,7 +415,36 @@
 	<script src="../js/jquery.min.js"></script>
 	<script>
 
+	// ---------------
+	// --- SOUND FX 
+	// ---------------
+
+	var neckPop = new Audio("../fx/ESM_War_UI_Source_Metal_Hinge_Lock_False_Turn_4.wav");
+	var neckGrow = new Audio("../fx/HYPER_POTIONS_fx_one_shot_start_up_C.wav");
+	var faceFlip = new Audio("../fx/ESM_Game_Technology.wav");
+	var headFall = new Audio("../fx/ESM_Card_Game_UI_Button_Heavy_Metallic_03_User_Interface_Tap_Click_Ping_Menu_Switch.wav");
+	
+	
+	var cracklin = new Audio("../fx/ah_fx_90_howlingcrackle.wav");
+	var mood = false;
+
+	cracklin.addEventListener('ended', function() {
+		this.currentTime = 0;
+		this.play();
+	}, false);
+
+	cracklin.volume = .1;
+
+	neckGrow.volume = .5;
+	
+
 	$(document).ready(function(){
+
+
+		function soundStart(mood) {
+			mood ? '' : cracklin.play();
+			mood ? '' : mood=true;
+		}
 
 
 		// ... need randoms
@@ -461,6 +490,7 @@
 
 		function chop(masterHead, masterRot, masterKick, masterGrow) {
 
+
 			// --- off with their heads
 
 			$(masterHead).find('.neck, .head').removeClass('animate');
@@ -493,6 +523,8 @@
 
 			// --- regrow another
 
+			headFall.play();
+
 			$(masterHead)
 				.addClass('regrow');
 
@@ -513,6 +545,14 @@
 
 		function grow(masterHead, masterGrow) {
 
+			neckGrow.play();
+			setTimeout(function(){ 
+					faceFlip.play();
+			}, 1200);
+
+			
+
+
 			$(masterHead)
 				.removeClass('regrow')
 				.css('transform', 'rotate(0deg)')
@@ -526,6 +566,8 @@
 			$(masterGrow).find('.decorglow')
 				.css('fill', 'none');
 		};
+
+
 
 
 		// xxxxxxx
@@ -587,6 +629,7 @@
 		});
 
 		$('#left2').click(function(){
+
 			newrot2 = getRotationDegrees(head2);
 
 			$(head2)
@@ -640,6 +683,11 @@
 
 		// --- GRAB ANGLE
 		function getRotationDegrees(obj) {
+
+			soundStart(mood);
+			neckPop.play();
+
+
 			var matrix = obj.css("transform");
 			if(matrix !== 'none') {
 				var values = matrix.split('(')[1].split(')')[0].split(',');
