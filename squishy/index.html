@@ -60,7 +60,7 @@
 
 		g, path, ellipse {
 			transform-origin: 50% 50%;
-			-webkit-transform-origin: 50% 50%;;
+			-webkit-transform-origin: 50% 50%;
 			-moz-transform-origin: 50% 50%;
 			transform-box: fill-box;
 			transition-timing-function: cubic-bezier(0.68, -0.55, .27, 1.55);
@@ -641,9 +641,9 @@
 		var shade4 = $('#shadowFixed');
 		var blush = $('#FACE');
 
-		function shadeShifting(time) {
+		function shadeShifting(lovetime) {
 
-			if (time == 'long') {
+			if (lovetime == 'long') {
 
 				$(blush).addClass('longSquish');
 
@@ -673,7 +673,7 @@
 				}, 1400);
 
 
-			} else if (time == 'short') {
+			} else if (lovetime == 'short') {
 
 				$(shade1).addClass('shade1short');
 				$(shade2).addClass('shade2short');
