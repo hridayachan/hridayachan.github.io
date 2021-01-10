@@ -521,12 +521,12 @@
 	loopy.volume = 0.1;
 	viral.volume = 0.1;
 
-	blip.volume = 0.5;
-	blop.volume = 0.5;
+	blip.volume = 0.3;
+	blop.volume = 0.3;
 	bigG.volume = 0.3;
 	closeG.volume = 0.3;
 
-	var firstRun = false;
+	var notFirstRun = false;
 	var started = false;
 
 	$(document).ready(function(){
@@ -549,7 +549,7 @@
 			$(this).children().css('fill-opacity', .2);
 			$('#WAVES').removeClass('go');
 
-			if(firstRun) {
+			if(notFirstRun) {
 				closeG.play();
 				blop.play();
 			};
@@ -568,7 +568,7 @@
 				$('#INFEX').toggleClass('grow stop');
 				soundStart(started);
 
-				if(firstRun) {
+				if(notFirstRun) {
 					laugh.play();
 				};
 
@@ -593,7 +593,7 @@
 			loopy.pause();
 			started = false;
 			$(this).children().css('fill-opacity', .2);
-			firstRun = true;
+			notFirstRun = true;
 			
 			setTimeout(function(){
 
