@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spread</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background: #000;
+			overflow: hidden;
+		}
+		svg {
+			overflow: visible;
+			display: block;
+			margin: auto;
+			-webkit-transform-origin: center center;
+			-webkit-transform: scale(.9);
+			-moz-transform-origin: center center;
+			-moz-transform: scale(.9);
+			fill-rule: evenodd;
+			clip-rule: evenodd;
+			stroke-linejoin: round;
+			stroke-miterlimit: 2;
+			max-width: 2000px;
+			min-height: 900px;
+			max-height: 90%;
+
+		}
+		@media all and (min-width: 1200px) {
+			svg {
+				-webkit-transform: scale(.7);
+				-moz-transform: scale(.7);
+			}
+		}
+		@media all and (max-width: 768px) {
+			svg {
+				-webkit-transform: scale(1);
+				-moz-transform: scale(1);
+			}
+		}
+
+		g, path, ellipse, circle {
+			transform-origin: 50% 50%;
+			-webkit-transform-origin: 50% 50%;
+			-moz-transform-origin: 50% 50%;
+			transform-box: fill-box;
+			transition-timing-function: cubic-bezier(0.68, -0.55, .27, 1.55);
+		}
+
+		/* --- LANDSCAPE --- */
+
+		svg, body, #WALL {
+			fill: #000;
+		}
+
+		#BODY {
+			fill: #462d7d;
+			animation: hues 20s infinite;
+		}
+
+		@keyframes hues {
+			0% { fill: #462d7d; }
+			15% { fill: #7d2d50; }
+			30% { fill: #7d2d2d; }
+			45% { fill: #7d6e2d; }
+			60% { fill: #4a7d2d; }
+			75% { fill: #2d7d70; }
+			90% { fill: #2d407d; }
+		}
+
+		#INFEX, #INFEX.stop {
+			opacity: 0;
+			transition: opacity 200ms linear;
+
+		}
+
+		#INFEX.grow {
+			opacity: 1;
+			transition: opacity 3s linear;
+			transition-delay: 1s;
+
+		}
+
+		/* --- GETTY UP -- */
+
+		#WHOLE {
+			transform: translateX(-380px);
+			animation: walk 13s infinite linear;
+			animation-direction: normal;
+			animation-play-state: paused;
+		}
+
+		@keyframes walk {
+			0% { transform: translateX(-380px);}
+			100% { transform: translateX(1100px); }
+		}
+
+		/* -- TITLE --- */
+
+		#TITLE {
+			opacity: 1;
+			transition: opacity 1s ease-in-out;
+		}
+
+
+
+		/* --- UPA UPA -- */
+
+		#WHOLE.start {
+			animation-play-state: running;
+		}
+
+		#WHOLE.start #BUMP {
+			animation: accel 1000ms ease-out 1;
+		}
+
+		@keyframes accel {
+			0% { transform: translateX(0);}
+			40% { transform: translateX(-60px); }
+			100% { transform: translateX(0); }
+		}
+
+		#WHOLE.start #BUMPhead {
+			animation: startHead 1s ease-in 1;
+			animation-delay: 150ms;
+		}
+
+		@keyframes startHead {
+			0% { transform: rotate(0);}
+			40% { transform: rotate(-55deg); }
+			70% { transform: rotate(20deg); }
+			100% { transform: rotate(0); }
+		}
+
+		/* --- OY OY -- */
+
+		#WHOLE.stop {
+			animation-play-state: paused;
+		}
+
+		#WHOLE.stop #BUMP {
+			animation: stopping 500ms ease-out 1;
+		}
+
+		@keyframes stopping {
+			0% { transform: translateX(0); }
+			50% { transform: translateX(20px); }
+			100% { transform: translateX(0px); }
+		}
+
+		#WHOLE.stop #BUMPhead {
+			animation: stopHead .8s ease-out 1;
+		}
+
+		@keyframes stopHead {
+			0% { transform: rotate(0);}
+			75% { transform: rotate(-2deg); }
+			100% { transform: rotate(0); }
+		}
+
+		/* --- SHAKE IT --- */
+
+		.shaker { animation: funkr .8s 1 ease-in-out; }
+		.shakel { animation: funkl .5s 1 cubic-bezier(0.68, -0.55, .27, 1.55); }
+
+		.start { animation: startMe 1s 1 cubic-bezier(0.68, -0.55, .27, 1.55); animation-delay: 150ms; }
+		.stop { animation: stopMe 1s 1 cubic-bezier(0.68, -0.55, .27, 1.55); }
+
+		#WHOLEhead15negpos.start { animation-delay: 0ms; }
+		#WHOLEhead15negpos.stop { animation: stopHead .7s 1 ease-out; }
+
+		#WHOLEarm.start {
+			animation: startArm .7s 1 ease-in;
+		}
+		#WHOLEarm.stop {
+			animation: stopArm .8s 1 ease-out;
+		}
+
+		@keyframes funkr {
+			0% { transform: skewY(-3deg); }
+			100% { transform: skewY(0deg); }
+		}
+
+		@keyframes funkl {
+			0% { transform: skewX(-4deg); }
+			100% { transform: skewX(0deg); }
+		}
+
+		@keyframes startMe {
+			0% { transform: rotate(-15deg); }
+			100% { transform: rotate(0deg); }
+		}
+
+		@keyframes stopMe {
+			0% { transform: rotate(15deg); }
+			100% { transform: rotate(0deg); }
+		}
+
+		@keyframes startArm {
+			0% { transform: rotate(0deg); }
+			45% { transform: rotate(-20deg); }
+			100% { transform: rotate(0deg); }
+		}
+
+		@keyframes stopArm {
+			0% { transform: rotate(0deg); }
+			35%, 55% { transform: rotate(20deg); }
+			100% { transform: rotate(0deg); }
+		}
+
+		@keyframes stopHead {
+			0% { transform: rotate(0deg); }
+			40% { transform: rotate(35deg); }
+			100% { transform: rotate(0deg); }
+		}
+
+		/* -- WALK IT --- */
+
+		#WALK {
+			animation: steps 400ms infinite cubic-bezier(0.68, -0.55, .27, 1.55);
+			animation-direction: alternate;
+			animation-play-state: running;
+		}
+
+		@keyframes steps {
+			0% { transform: translateY(20px);}
+			90%, 100% { transform: translateY(5px); }
+		}
+
+		#WALK #WHOLEhead15negpos {
+			animation: walkhead 400ms infinite ease-in-out;
+		}
+		#WALK #WALKarm {
+			animation: walkarm 400ms infinite ease-in-out;
+		}
+
+		#WALK #PHONE {
+			animation: walkphone 390ms infinite ease-in-out;
+		}
+
+		#WALK #BANG {
+			animation: walkbangs 390ms infinite ease-in-out;
+		}
+
+		#WALK, 
+		#WALK #WHOLEhead15negpos, 
+		#WALK #WALKarm, 
+		#WALK #PHONE,
+		#WALK #BANG {
+			animation-direction: alternate;
+			animation-play-state: running;
+		}
+
+		@keyframes walkhead {
+			0% { transform: rotate(-13deg); }
+			90%, 100% { transform: rotate(0deg); }
+		}
+
+		@keyframes walkarm {
+			0%, 10% { transform: rotate(4deg); }
+			100% { transform: rotate(0deg); }
+		}
+
+		@keyframes walkphone {
+			0%, 10% { transform: rotate(0); }
+			100% { transform: rotate(10deg) }
+		}
+
+		@keyframes walkbangs {
+			0%, 10% { transform: rotate(0); }
+			100% { transform: rotate(15deg); }
+		}
+
+
+		#WALK.stop, 
+		#WALK.stop #WHOLEhead15negpos, 
+		#WALK.stop #WALKarm, 
+		#WALK.stop #PHONE {
+			animation-play-state: paused;
+		}
+
+		#WALK.stop #BANG {
+			animation: stopbangs 800ms 1 ease-out;
+			animation-delay: 200ms;
+		}
+
+		@keyframes stopbangs {
+			0%, 90%, 100% { transform: rotate(0); }
+			50% { transform: rotate(-15deg); }
+		}
+
+		/* ---- regular breathing -- */
+
+		#WALK.stop #regularHead {
+			animation: breathe .9s infinite ease-in-out;
+			animation-direction: alternate;
+			transform: rotate(10deg);
+			transition: all 400ms ease-in-out;
+		}
+
+		@keyframes breathe {
+			0% { transform: rotate(10deg); }
+			100% { transform: rotate(14deg); }
+		}
+
+
+		/* ---- WAVES --- */
+
+
+		
+
+		#WAVES > circle  {
+			animation: waving 1.6s linear infinite;
+			fill: #000;
+			opacity: 0;
+			transition: opacity 250ms linear;
+		}
+		#WAVES > circle:nth-child(2) {
+			animation-delay: 400ms;
+		}
+		#WAVES > circle:nth-child(3) {
+			animation-delay: 800ms;
+		}
+		#WAVES > circle:nth-child(4) {
+			animation-delay: 1200ms;
+		}
+
+		#WAVES.go > circle {
+			opacity: 1;
+			transition: opacity 250ms linear;
+		}
+
+		@keyframes waving {
+			0% { transform: scale(.1); fill-opacity: 0; }
+			1% { transform: scale(.1); fill-opacity: .5; }
+			40% { fill-opacity: .2; }
+			100% { transform: scale(70); fill-opacity: 0; }
+		}
+
+		/* ---- */
+
+		#PAIN > circle  {
+			animation: bubbling .9s linear infinite;
+			fill: #f00;
+		}
+
+		#PAIN > circle:nth-child(2) {
+			animation-delay: 300ms;
+		}
+		#PAIN > circle:nth-child(3) {
+			animation-delay: 600ms;
+		}
+
+		@keyframes bubbling {
+			0% { transform: scale(1); fill-opacity: .9; }
+			40% { fill-opacity: .5; }
+			100% { transform: scale(6); fill-opacity: 0; }
+		}
+
+		/* --- OOF -- */
+
+		#VIRUS {
+			animation: fever .3s linear infinite;
+		}
+
+		@keyframes fever {
+			0% { transform: scale(1); fill-opacity: .2; }
+			40% { transform: scale(.9); fill-opacity: .9; }
+			100% { transform: scale(1); fill-opacity: .2; }
+		}
+
+		/* ------ */
+		
+		#start, #restart, #stop { cursor: pointer; }
+		.balance { fill-opacity: 0!important; }
+		.negative { display: none; }
+		.positive { display: initial; }
+
+	</style>
+</head>
+<body>
+	<div id="container">
+
+		<!-- 1024x560 -->
+		<svg width="100%" height="100%" viewBox="0 0 1024 460" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+
+
+			<rect id="BODY" x="-1079" y="-600" width="3182" height="3284"/>
+
+
+			<g id="WALK" class="stop">
+				<g id="WHOLE">
+					<g id="SHAKY">
+						<g id="BUMP">
+
+							<g id="WAVES">
+								<circle cx="289.418" cy="300.462" r="2"/>
+								<circle cx="289.418" cy="300.462" r="2"/>
+								<circle cx="289.418" cy="300.462" r="2"/>
+								<circle cx="289.418" cy="300.462" r="2"/>
+							</g>
+
+							<g id="WALKarm">
+								<g id="WHOLEarm">
+									<ellipse class="balance" cx="81.15" cy="517.416" rx="31.218" ry="78.496"/>
+
+
+									<g id="PHONE">
+										<path id="glow" d="M299.444,278.548c0.292,-0.711 -0.048,-1.525 -0.76,-1.817l-2.577,-1.059c-0.711,-0.292 -1.525,0.048 -1.817,0.759l-22.307,54.307c-0.292,0.711 0.049,1.526 0.76,1.818l2.577,1.059c0.711,0.292 1.525,-0.049 1.818,-0.76l22.306,-54.307Z" style="stroke:rgba(0,0,0,0);fill:transparent;stroke-width:3px">
+
+												<animate begin="stop.click" attributeName="stroke" values="#f00;rgba(0,0,0,0);#f00;rgba(0,0,0,0);#f00" dur="0.4s" repeatCount="8" />
+
+										</path>
+
+										<path id="gadget" d="M303.646,277.822l-7.96,-3.257l-23.027,56.289l6.498,2.658l24.489,-55.69Z"/>
+										<path class="balance" d="M233.388,376.68l6.884,5.157l36.465,-48.672l-5.619,-4.21l-37.73,47.725Z" style="fill-opacity:0;"/>
+									</g>
+
+
+									<path id="ARM" d="M271.073,330.602c6.505,1.138 14.722,-7.781 14.722,-7.781c-0,-0 3.682,-17.496 9.426,-17.34c8.461,0.229 4.539,21.782 4.539,21.782l-9.066,12.861c0,-0 0.233,12.946 -4.163,17.47c-4.396,4.524 -9.429,8.713 -22.212,9.674c-12.784,0.962 -11.851,10.514 -11.851,10.514c0,0 -6.478,35.12 -20.63,48.307c-14.151,13.187 -55.843,23.358 -62.853,13.17c-7.011,-10.189 53.359,-73.485 67.758,-78.489c14.398,-5.003 9.026,-22.469 9.026,-22.469c0.136,-0.627 0.312,-1.214 0.523,-1.763c-0.107,-0.389 -0.02,-0.874 0.3,-1.471c5.943,-11.088 11.892,-17.018 21.348,-19.163c9.456,-2.146 7.987,2.598 6.447,5.834c-0.921,1.934 -2.329,5.948 -3.314,8.864Z"/>
+								</g>
+							</g>
+
+							<path id="BOD" d="M69.904,254.885c-0,-0 44.03,20.805 57.797,39.691c31.686,43.47 119.934,125.334 108.944,165.424l-136.028,-0c0,-0 -79.356,-118.259 -27.931,-172.342c0,0 -5.414,-24.204 -5.334,-30.852c0.08,-6.648 2.552,-1.921 2.552,-1.921Z"/>
+
+							<g id="INFEX" class="grow">
+
+								<g id="PAIN">
+									<circle cx="118.07" cy="362.01" r="7.925"/>
+									<circle cx="118.07" cy="362.01" r="7.925"/>
+									<circle cx="118.07" cy="362.01" r="7.925"/>
+								</g>
+
+								<path id="VIRUS" d="M118.007,344.887l0,-5.978l-2.002,0.202l-0,-3.781l2.698,-0.273l2.699,0.273l-0,3.781l-2.003,-0.202l-0,5.978c4.504,0.18 8.563,2.102 11.521,5.11l4.448,-4.024l-0.284,-0.344l-1.255,-1.036l2.821,-2.552l1.108,0.914l2.533,3.07l-2.794,2.528l-1.242,-1.505l-4.4,3.98c2.134,2.552 3.54,5.734 3.896,9.224l5.909,-0.359l-0.208,-2.066l3.758,-0.228l0.445,4.411l-0.098,0.975l-3.805,0.231l0.122,-1.206l-0.074,-0.731l-5.964,0.362c0.003,0.123 0.004,0.246 0.004,0.369c0,2.913 -0.728,5.657 -2.013,8.061l5.111,3.005l0.986,-1.816l3.246,1.91l-2.12,3.905l-0.616,0.746l-3.286,-1.932l0.766,-0.928l0.359,-0.661l-5.151,-3.03c-2.934,4.555 -7.965,7.633 -13.723,7.863l-0,5.977l2.003,-0.202l-0,3.782l-2.699,0.272l-2.698,-0.272l-0,-3.782l2.002,0.202l0,-5.977c-4.517,-0.181 -8.587,-2.114 -11.547,-5.137l-4.446,4.021l0.308,0.374l1.142,0.942l-2.821,2.552l-0.994,-0.821l-2.626,-3.182l2.794,-2.527l1.31,1.588l4.4,-3.98c-2.131,-2.56 -3.53,-5.749 -3.877,-9.246l-5.909,0.359l0.194,1.922l-3.759,0.229l-0.425,-4.217l0.118,-1.171l3.805,-0.232l-0.142,1.403l0.069,0.681l5.968,-0.363c-0.002,-0.107 -0.003,-0.212 -0.003,-0.318c0,-2.929 0.737,-5.688 2.034,-8.1l-5.111,-3.005l-0.926,1.706l-3.247,-1.909l2.04,-3.757l0.725,-0.878l3.285,1.932l-0.874,1.06l-0.338,0.622l5.154,3.032c2.936,-4.535 7.956,-7.597 13.699,-7.826Z" style="fill:#f00;"/>
+							</g>
+
+							<g id="regularHead">
+								<g id="BUMPhead">
+									<g id="WHOLEhead15negpos">
+										<ellipse class="balance" cx="47.061" cy="415.636" rx="41.935" ry="44.364"/>
+										<path id="HEAD" d="M91.068,253.645c-0,0 -9.253,-3.552 -11.956,-12.451c-6.519,-21.465 -2.835,-51.031 -2.835,-51.031c0,-0 -5.03,1.702 -15.762,-3.119c-10.732,-4.821 -22.583,-20.492 -13.223,-41.817c7.63,-17.38 35.695,-9.547 39.636,-4.969c0,0 22.795,-23.397 52.361,-18.895c27.647,4.211 42.009,22.411 43.869,34.301c0,0 34.716,16.04 21.718,59.287c0,0 -5.527,-0.702 -10.514,-1.504c-5.564,-0.895 -6.92,-0.379 -6.92,-0.379c0,-0 -4.654,6.67 -2.234,13.694c2.419,7.025 6.874,8.854 6.232,24.436c-0.181,4.379 -11.288,-1.365 -12.259,3.918c-0.233,1.266 -1.51,3.389 -0.803,8.941c0.493,3.873 -12.774,-2.94 -13.18,-1.6c-0.41,1.355 12.275,5.232 10.94,5.774c-8.94,3.624 -11.017,11.455 -11.121,13.363l-26.878,-9.846c0,-0 -1.008,3.051 -2.242,6.253c-0.763,1.978 1.392,5.008 0.643,6.419c-0.662,1.246 -4.51,1.739 -5.426,3.263c-2.097,3.491 -4.563,7.184 -6.037,8.657c-10.915,10.9 -23.257,15.853 -38.149,6.296c-11.881,-7.625 3.616,-36.017 3.616,-36.017l0.524,-12.974Zm-23.559,-93.624c0.134,-3.408 3.794,-5.519 8.389,-2.608c4.595,2.911 0.943,9.233 -2.995,12.648c-3.938,3.415 -12.622,1.608 -16.401,-7.86c-3.652,-9.148 2.785,-16.574 12.28,-17.663c8.56,-0.981 11.69,1.497 11.69,1.497c-0,-0 8.757,3.561 4.692,0.478c-4.066,-3.084 -26.032,-10.251 -32.952,9.6c-2.101,6.025 -1.398,14.768 9.371,21.537c9.723,6.112 21.281,0.033 22.461,-14.659c1.18,-14.692 -12.375,-14.372 -17.143,-12.174c-4.849,2.236 -6.101,6.027 -5.583,8.855c1.255,6.845 6.022,4.634 6.191,0.349Z"/>
+										
+
+										<g id="BANG">
+											<path id="hair" d="M174.573,159.901c-3.114,-2.663 -4.984,-5.486 1.377,-5.313c0,-0 50.197,-2.337 39.314,60.381c0,0 -2.296,5.133 -3.392,-0.785c-0.207,-1.119 -0.537,-1.629 -0.926,-1.762c0.906,-4.902 1.499,-10.308 1.281,-15.801c-0.5,-12.586 -5.229,-25.622 -20.072,-34.193l-0.27,-0.093l-17.312,-2.434Zm2.486,1.937l14.466,2.034c14.179,8.243 18.693,20.749 19.172,32.82c0.232,5.83 -0.471,11.56 -1.487,16.671c-1.277,1.36 -2.323,3.289 -1.503,-0.145c1.472,-6.163 8.441,-42.524 -26.79,-48.815c0,-0 -1.83,-1.101 -3.858,-2.565Z"/>
+											<path class="balance" serif:id="balance" d="M205.096,166.786c2.941,2.863 4.631,5.804 -1.705,5.213c-0,0 -50.226,-0.966 -35.46,-62.857c-0,-0 2.611,-4.973 3.335,1.007c0.137,1.13 0.435,1.661 0.815,1.819c-1.21,4.834 -2.138,10.192 -2.263,15.689c-0.286,12.596 3.619,25.92 17.894,35.451l0.264,0.111l17.12,3.567Zm-2.36,-2.097l-14.306,-2.981c-13.631,-9.161 -17.356,-21.941 -17.082,-34.021c0.132,-5.835 1.191,-11.509 2.522,-16.545c1.36,-1.273 2.524,-3.13 1.492,0.244c-1.853,6.056 -11.072,41.894 23.685,50.489c-0,0 1.757,1.219 3.689,2.814Z"/>
+										</g>
+
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+
+
+			<rect id="WALL" x="-1079" y="441" width="3182" height="3284"/>
+			<rect id="WALL-w" x="-3177.74" y="-1356.14" width="3182.74" height="3284.43"/>
+			<rect id="WALL-e" x="1019.52" y="-1356.14" width="3182.74" height="3284.43"/>
+
+
+			<g id="TITLE">
+        		<text x="289.203px" y="166.159px" style="font-family:'Impact', sans-serif;font-stretch:condensed;font-size:96px;fill:rgba(0,0,0,.1);stroke:rgba(0,0,0,.5);stroke-width:1px;">
+        			THE SPREAD
+        		</text>
+    		</g>
+
+
+			<g id="start">
+				<path d="M492,456.33c8.279,0 15,6.721 15,15c0,8.279 -6.721,15 -15,15c-8.279,0 -15,-6.721 -15,-15c0,-8.279 6.721,-15 15,-15Zm5.639,16.319c0.44,-0.295 0.704,-0.789 0.704,-1.319c0,-0.529 -0.264,-1.024 -0.704,-1.319l-7.509,-5.036c-0.488,-0.326 -1.115,-0.358 -1.632,-0.082c-0.518,0.276 -0.841,0.815 -0.841,1.402l-0,10.071c-0,0.586 0.323,1.125 0.841,1.401c0.517,0.276 1.144,0.245 1.632,-0.082l7.509,-5.036Z" style="fill:#4e4e4e;"/>
+    			<circle cx="492" cy="472" r="20" style="fill:transparent;"/>
+    		</g>
+
+    		<g id="stop">
+	    		<path d="M532,456.33c8.279,0 15,6.721 15,15c0,8.279 -6.721,15 -15,15c-8.279,0 -15,-6.721 -15,-15c0,-8.279 6.721,-15 15,-15Zm-1.838,9.965c-0,-0.878 -0.712,-1.589 -1.589,-1.589l-0.84,0c-0.877,0 -1.588,0.711 -1.588,1.589l-0,10.071c-0,0.877 0.711,1.588 1.588,1.588l0.84,0c0.877,0 1.589,-0.711 1.589,-1.588l-0,-10.071Zm7.693,-0c0,-0.878 -0.711,-1.589 -1.588,-1.589l-0.84,0c-0.877,0 -1.589,0.711 -1.589,1.589l0,10.071c0,0.877 0.712,1.588 1.589,1.588l0.84,0c0.877,0 1.588,-0.711 1.588,-1.588l0,-10.071Z" style="fill:#4e4e4e;fill-opacity:.2"/>
+				<circle cx="534" cy="472" r="20" style="fill:transparent;"/>
+			</g>
+
+
+
+			<circle id="NOSTART" cx="492" cy="472" r="20" style="fill:rgba(0,0,0,0);display:none"/>
+			<circle id="NOSTOP" cx="534" cy="472" r="20" style="fill:rgba(0,0,0,0)"/>
+
+		</svg>
+
+
+
+
+	</div>
+
+	<script src="../js/jquery.min.js"></script>
+	<script>
+
+	//var path = document.querySelector("#r6");
+	//var x = Math.floor(path.getTotalLength());
+	//console.log( x );
+
+	// ---------------
+	// --- SOUND FX 
+	// ---------------
+	var blip = new Audio("../fx/ESM_Explainer_Video_One_Shot_Positive_Notification_Alert_Texting_UI_Chime_Ascend_2_Bling.wav");
+	var blop = new Audio("../fx/ESM_Explainer_Video_One_Shot_Positive_Notification_Alert_Texting_UI_Chime_Descend_2.wav");
+	var bigG = new Audio("../fx/ESM_Holigraphic_UI_Sounds_76_Glitch_Software_Particle_Processed_Beep_Chrip_Electronic.wav");
+	var closeG = new Audio("../fx/ESM_Holigraphic_UI_Sounds_87_Glitch_Software_Particle_Processed_Beep_Chrip_Electronic.wav");
+	var viral = new Audio("../fx/X10_DST_140_resampled_lofi_synth_stress_Cm.wav");
+	var loopy = new Audio("../fx/SC_MJ_160_drum_loop_futuristic_metasphere.wav");
+	var laugh = new Audio("../fx/DSS_vocal_fx_lil_laugh.wav");
+
+	loopy.addEventListener('ended', function() {
+		this.currentTime = 0;
+		this.play();
+	}, false);
+
+	viral.addEventListener('ended', function() {
+		this.currentTime = 0;
+		this.play();
+	}, false);
+
+	loopy.volume = 0.1;
+	viral.volume = 0.1;
+
+	blip.volume = 0.5;
+	blop.volume = 0.5;
+	bigG.volume = 0.3;
+	closeG.volume = 0.3;
+
+	var firstRun = false;
+	var started = false;
+
+	$(document).ready(function(){
+
+		var whole = $('#WHOLE'),
+			wholeShake = $('#SHAKY'),
+			wholeHead = $('#WHOLEhead15negpos'),
+			wholeArm = $('#WHOLEarm'),
+			walk = $('#WALK');
+
+		function soundStart(started) {
+			started ? '' : loopy.play();
+			started ? '' : started=true;
+		}
+
+		$('#start').click(function(){
+
+			$('#TITLE').css('opacity', '0');
+
+			$(this).children().css('fill-opacity', .2);
+			$('#WAVES').removeClass('go');
+
+			if(firstRun) {
+				closeG.play();
+				blop.play();
+			};
+
+			viral.pause();
+
+			$('#NOSTART').css('display', 'block');
+			$(whole).addClass('start').removeClass('stop');
+			$(wholeShake).addClass('shakel');
+			$(wholeHead).addClass('start');
+			$(wholeArm).addClass('start');
+
+			$(walk).removeClass('stop');
+			
+			setTimeout(function(){
+				$('#INFEX').toggleClass('grow stop');
+				soundStart(started);
+
+				if(firstRun) {
+					laugh.play();
+				};
+
+			}, 300);	
+			
+
+			setTimeout(function(){
+
+				$('#stop').children().css('fill-opacity', 1);
+				$('#NOSTOP').css('display', 'none');
+
+				$(wholeShake).removeClass('shakel');
+				$(wholeHead).removeClass('start');
+				$(wholeArm).removeClass('start');
+
+			}, 1200);
+
+		});
+
+		$('#stop').click(function(){
+
+			loopy.pause();
+			started = false;
+			$(this).children().css('fill-opacity', .2);
+			firstRun = true;
+			
+			setTimeout(function(){
+
+				blip.play();
+				$(this).children().css('fill-opacity', .2);
+				$('#NOSTOP').add('#NOSTART').css('display', 'block');
+
+			}, 100);
+
+
+			setTimeout(function(){
+
+				$(whole).addClass('stop').removeClass('start');
+				$(wholeShake).addClass('shaker');
+				$(wholeHead).addClass('stop');
+				$(wholeArm).addClass('stop');
+				$(walk).addClass('stop');				
+
+			}, 600);
+
+			setTimeout(function(){
+
+				bigG.play();
+				$('#WAVES').addClass('go');
+
+			}, 1200);
+
+
+			setTimeout(function(){
+
+				$(wholeShake).removeClass('shaker');
+				$(wholeHead).removeClass('stop');
+				$(wholeArm).removeClass('stop');
+
+			}, 1600);
+
+			setTimeout(function(){
+
+				$('#INFEX').toggleClass('grow stop');
+				viral.play();
+				$('#start').children().css('fill-opacity', 1);
+				$('#NOSTART').css('display', 'none');
+
+			}, 1800);
+
+		});
+
+	});
+	</script>
+</body>
+</html>
