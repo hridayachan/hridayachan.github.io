@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <title>Squishy</title>
 	<style>
+		* { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+		
 		:root {
 			--color1: #ffbdfc;
 			--color2: #46355a;
@@ -25,10 +27,11 @@
 			overflow: visible;
 			display: block;
 			margin: auto;
+			transform: scale(3) translateX(-3%) translateY(-3%);
 			-webkit-transform-origin: top center;
-			-webkit-transform: scale(1.4);
+			-webkit-transform: scale(3) translateX(-3%) translateY(-3%);
 			-moz-transform-origin: top center;
-			-moz-transform: scale(1.4);
+			-moz-transform: scale(3) translateX(-3%) translateY(-3%);
 			fill-rule: evenodd;
 			clip-rule: evenodd;
 			stroke-linejoin: round;
@@ -36,17 +39,13 @@
 		}
 		@media all and (min-width: 1200px) {
 			svg {
+				transform: scale(1);
 				-webkit-transform: scale(1);
 				-moz-transform: scale(1);
 			}
 		}
-		@media all and (max-width: 768px) {
-			svg {
-				height: 200%;
-				width: auto;
-				margin: 0 -300px;
-			}
-		}
+
+
 		.color1 { fill: var(--color1); }
 		.color2 { fill: var(--color2); }
 		.color3 { fill: var(--color3); }
@@ -102,6 +101,7 @@
 		/* --- STUFF --- */
 
 		#TOUCH, #JUICE { cursor: pointer; }
+
 		.hidden { display: none; }
 
 
@@ -253,6 +253,7 @@
 
 		#STROKE, #BODY { opacity: 1; }
 		#HEAD, #BODY { stroke: black; stroke-width: 2px; paint-order: stroke; }
+
 
 
 	</style>
