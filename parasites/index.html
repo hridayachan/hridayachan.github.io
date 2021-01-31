@@ -20,10 +20,8 @@
 			display: block;
 			margin: auto;
 			-webkit-transform-origin: center center;
-			-webkit-transform: scale(.9);
 			-moz-transform-origin: center center;
-			-moz-transform: scale(.9);
-			transform: scale(.9);
+			transform-origin: center center
 			fill-rule: evenodd;
 			clip-rule: evenodd;
 			stroke-linejoin: round;
@@ -32,7 +30,9 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%);
+			-webkit-transform: translate(-50%, -50%) scale(.9);
+			-moz-transform: translate(-50%, -50%) scale(.9);
+			transform: translate(-50%, -50%) scale(.9);
 		}
 
 		clipPath path { fill: none; }
@@ -147,6 +147,7 @@
 			/*animation-play-state: paused;*/
 			opacity: 0;
 			transition: all 250ms ease-out;
+			transition-timing-function: linear;
 		}
 
 		#path4.start, #path5.start, #path7.start, #path8.start, #path9.start, #path10.start,
