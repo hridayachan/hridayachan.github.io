@@ -1,0 +1,45 @@
+@import 'partials/mixins';
+@import 'partials/functions';
+
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+svg {
+  overflow: visible;
+  display: block;
+  margin: auto;
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  transform-origin: center center;
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+  stroke-linejoin: round;
+  stroke-miterlimit: 2;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(.9);
+  -moz-transform: translate(-50%, -50%) scale(.9);
+  transform: translate(-50%, -50%) scale(.9);
+}
+
+clipPath path { fill: none; }
+
+g, path, ellipse, circle {
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  transform-box: fill-box;
+  transition-timing-function: cubic-bezier(0.68, -0.55, .27, 1.55);
+}
+
+@import 'partials/now';
