@@ -1,8 +1,5 @@
-@import 'vars';
 @import 'mixins';
 
-/*$lengthbox: 2168;
-$lengthbrain: 1401;*/
 
 /* --- LANDSCAPE --- */
 
@@ -63,10 +60,11 @@ svg {
 }
 
 #yall #moodmoveR path, #yall #moodmoveL path {
-  animation: justgoing 2s infinite cubic-bezier(0.68, -0.55, .27, 1.55);
+  animation: justgoing 1.9s infinite cubic-bezier(0.68, -0.55, .27, 1.55);
+  animation-direction: alternate-reverse;
 }
 #yall #moodmoveR path {
-  animation-direction: reverse;
+  animation-direction: alternate;
 }
 
 #yall.start #moodmoveR, #yall.start #moodmoveL {
@@ -76,10 +74,8 @@ svg {
 }
 
 @keyframes justgoing {
-  0% { transform: translateY(0); }
-  33% { transform: translateY(20px); }
-  66% { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
+  0% { transform: translateY(20px); }
+  100% { transform: translateY(-20px); }
 }
 
 /* --- THUNDER --- */

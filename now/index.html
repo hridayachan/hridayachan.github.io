@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Now</title>
 
-<link rel="stylesheet" href="../css/anims.css" type="text/css">
+<link rel="stylesheet" href="../css/now.css" type="text/css">
 
 </head>
 <body>
@@ -253,7 +253,38 @@
 	<script src="../js/jquery.min.js"></script>
 	<script>
 
+		var bb = new Audio("../fx/SPLC-1851_FX_Loop_Clock_Wall_Ticking.wav");
+		bb.volume = 0.2;
+
+		var tt = new Audio("../fx/KSHMR_Crowd_Roar_04_Crowd_Singing.wav");
+		tt.volume = 0.2;
+		
+		var zz = new Audio("../fx/OS_A_Thunder_808.wav");
+		zz.volume = 0.6;
+
+		var xx = new Audio("../fx/ESM_Sheet_Metal_Hit_or_SlideSheet_Cartoon_Thunder_Aluminium_Clang_Bounce.wav");
+		xx.volume = 0.6;
+
+		var b = false;
+		bb.addEventListener('ended', function() {
+			this.currentTime = 0;
+			this.play();
+		}, false);
+
+		$(document).ready(function(){
+			
+			tt.play();
+
+			function soundStart(b) {
+				b ? '' : bb.play();
+				b ? '' : b=true;
+			};
+		});
+
+
 		$('#start').click(function(){
+
+
 
 			$(this).children().css('fill-opacity', .2);
 			$('#NOSTART').css('pointer-events', 'all');
@@ -263,9 +294,29 @@
 			$('#stop').children().css('fill-opacity', 1);
 			$('#NOSTOP').css('pointer-events', 'none');
 
+			setTimeout(function(){
+
+				zz.play();
+
+			}, 800);
+
+			setTimeout(function(){
+
+				xx.play();
+
+			}, 900);
+
+			setTimeout(function(){
+
+				bb.play();
+
+			}, 1000);
+
 		});
 
 		$('#stop').click(function(){
+
+
 
 			$(this).children().css('fill-opacity', .2);
 			$('#NOSTOP').css('pointer-events', 'all');
@@ -274,6 +325,13 @@
 
 			$('#start').children().css('fill-opacity', 1);
 			$('#NOSTART').css('pointer-events', 'none');
+
+			setTimeout(function(){
+
+				tt.play();
+				b = false;
+
+			}, 800);
 
 		});
 	</script>
