@@ -1,168 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Parasites</title>
-	<style>
-		* {
-			-webkit-tap-highlight-color: rgba(0,0,0,0);
-		}
-		
-		body {
-			margin: 0;
-			padding: 0;
-			background: #000;
-			overflow: hidden;
-		}
+	<meta charset="utf-8">
+	<title>Parasites</title>
 
-		svg {
-			overflow: visible;
-			display: block;
-			margin: auto;
-			-webkit-transform-origin: center center;
-			-moz-transform-origin: center center;
-			transform-origin: center center
-			fill-rule: evenodd;
-			clip-rule: evenodd;
-			stroke-linejoin: round;
-			stroke-miterlimit: 2;
+	<link rel="stylesheet" href="../css/parasites.css" type="text/css">
 
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			-webkit-transform: translate(-50%, -50%) scale(.9);
-			-moz-transform: translate(-50%, -50%) scale(.9);
-			transform: translate(-50%, -50%) scale(.9);
-		}
-
-		clipPath path { fill: none; }
-
-		g, path, ellipse, circle {
-			transform-origin: 50% 50%;
-			-webkit-transform-origin: 50% 50%;
-			-moz-transform-origin: 50% 50%;
-			transform-box: fill-box;
-			transition-timing-function: cubic-bezier(0.68, -0.55, .27, 1.55);
-		}
-		
-		/* --- LANDSCAPE --- */
-
-		svg {
-			fill: #000;
-		}
-
-		#BG, #start path, #stop path {
-			fill: #462d7d;
-			animation: hues 20s infinite;
-		}
-
-		@keyframes hues {
-			0% { fill: #462d7d; }
-			15% { fill: #7d2d50; }
-			30% { fill: #7d2d2d; }
-			45% { fill: #7d6e2d; }
-			60% { fill: #4a7d2d; }
-			75% { fill: #2d7d70; }
-			90% { fill: #2d407d; }
-		}
-
-		/* ---------- */
-
-		#start, #stop { cursor: pointer; }
-
-
-		/*  length 12731 */
-
-		#path4, #path5, #path7, #path9, #path10 {
-			stroke-dasharray: 2500;
-			stroke-dashoffset: -2900;
-			stroke-dashoffset: 1800;
-			stroke-linejoin: round;
-			stroke-linecap: round;
-			animation: out 3s infinite linear;
-			animation-direction: reverse;
-		}
-
-		@keyframes out {
-			0% { stroke-dashoffset: -2900; }
-			100% { stroke-dashoffset: 1800; }
-		}
-
-		/* whatever 16940 */
-
-		#path3, #path1 {
-			stroke-dasharray: 2000;
-			stroke-dashoffset: -3200;
-			stroke-dashoffset: 1000; 
-			stroke-linejoin: round;
-			stroke-linecap: round;
-			animation: out2 3.5s infinite linear;
-			animation-direction: reverse;
-		}
-
-		@keyframes out2 {
-			0% { stroke-dashoffset: -3200; }
-			100% { stroke-dashoffset: 1000; }
-		}
-
-		/* --- wow 23097 */
-
-		#path6, #path8 {
-			stroke-dasharray: 2200;
-			stroke-dashoffset: -3400;
-			stroke-dashoffset: 700;
-			stroke-linejoin: round;
-			stroke-linecap: round;
-			animation: oy 3s infinite linear;
-		}
-
-		@keyframes oy {
-			0% { stroke-dashoffset: -3400; }
-			100% { stroke-dashoffset: 700; }
-		}
-
-
-
-		/* whatever 17259 */
-
-		#path2, #path11 {
-			stroke-dasharray: 2200;
-			stroke-dashoffset: -1340;
-			stroke-linejoin: round;
-			stroke-linecap: round;
-			animation: out3 4s infinite linear;
-		}
-
-		@keyframes out3 {
-			0% { stroke-dashoffset: -1340; }
-			100% { stroke-dashoffset: 7100; }
-		}
-
-
-		/* --- FORCE --- */
-
-		#path4, #path5, #path7, #path8, #path9, #path10, #mask10,
-		#path3, #path11, #path6, #path1, #path2 {
-			stroke: black!important;
-			/*animation-play-state: paused;*/
-			opacity: 0;
-			transition: all 250ms ease-out;
-			transition-timing-function: linear;
-		}
-
-		#path4.start, #path5.start, #path7.start, #path8.start, #path9.start, #path10.start,
-		#path3.start, #path11.start, #path6.start, #path1.start, #path2.start {
-			/*animation-play-state: running;*/
-			opacity: 1;
-		}
-
-		.letter { stroke: white; stroke-width: 2px;}
-
-
-	</style>
 </head>
 <body>
-
 	<svg width="100%" height="100%" viewBox="0 0 1040 1595" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/">
 	    <rect id="Artboard1" x="0" y="0" width="1040" height="1595" style="fill:none;"/>
 
@@ -170,17 +15,13 @@
 	        <rect x="0" y="0" width="1040" height="1595"/>
 	    </clipPath>
 
-
 	    <g clip-path="url(#yall)">
 
-
 	        <rect id="BG" x="0" y="0" width="1040" height="1594"/>
-
 
 	        <path class="letter" id="A" d="M477.44,529.614l25.889,173.916l-46.299,0l-2.256,-31.259l-16.221,-0l-2.685,31.259l-46.836,0l22.988,-173.916l65.42,0Zm-23.955,111.826c-2.292,-19.694 -4.583,-44.007 -6.875,-72.939c-4.583,33.229 -7.448,57.542 -8.594,72.939l15.469,0Z" style="fill-opacity:0.28;"/>
 
 	        <path class="letter" id="A1" serif:id="A" d="M247.235,529.614l25.889,173.916l-46.299,0l-2.256,-31.259l-16.221,-0l-2.685,31.259l-46.836,0l22.988,-173.916l65.42,0Zm-23.955,111.826c-2.292,-19.694 -4.584,-44.007 -6.875,-72.939c-4.584,33.229 -7.448,57.542 -8.594,72.939l15.469,0Z" style="fill-opacity:0.28;"/>
-
 
 			<!-- CHARTREUSE -->
 			<g id="worm1" class="wormy">

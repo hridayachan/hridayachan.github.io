@@ -1,0 +1,114 @@
+@import 'mixins';
+
+/* --- LANDSCAPE --- */
+
+svg {
+  fill: #000;
+}
+
+#BG, #start path, #stop path {
+  fill: #462d7d;
+  animation: hues 20s infinite;
+}
+
+@keyframes hues {
+  0% { fill: #462d7d; }
+  15% { fill: #7d2d50; }
+  30% { fill: #7d2d2d; }
+  45% { fill: #7d6e2d; }
+  60% { fill: #4a7d2d; }
+  75% { fill: #2d7d70; }
+  90% { fill: #2d407d; }
+}
+
+/* ---------- */
+
+#start, #stop { cursor: pointer; }
+
+
+/*  length 12731 */
+
+#path4, #path5, #path7, #path9, #path10 {
+  stroke-dasharray: 2500;
+  stroke-dashoffset: -2900;
+  stroke-dashoffset: 1800;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  animation: out 3s infinite linear;
+  animation-direction: reverse;
+}
+
+@keyframes out {
+  0% { stroke-dashoffset: -2900; }
+  100% { stroke-dashoffset: 1800; }
+}
+
+/* whatever 16940 */
+
+#path3, #path1 {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: -3200;
+  stroke-dashoffset: 1000; 
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  animation: out2 3.5s infinite linear;
+  animation-direction: reverse;
+}
+
+@keyframes out2 {
+  0% { stroke-dashoffset: -3200; }
+  100% { stroke-dashoffset: 1000; }
+}
+
+/* --- wow 23097 */
+
+#path6, #path8 {
+  stroke-dasharray: 2200;
+  stroke-dashoffset: -3400;
+  stroke-dashoffset: 700;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  animation: oy 3s infinite linear;
+}
+
+@keyframes oy {
+  0% { stroke-dashoffset: -3400; }
+  100% { stroke-dashoffset: 700; }
+}
+
+
+
+/* whatever 17259 */
+
+#path2, #path11 {
+  stroke-dasharray: 2200;
+  stroke-dashoffset: -1340;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  animation: out3 4s infinite linear;
+}
+
+@keyframes out3 {
+  0% { stroke-dashoffset: -1340; }
+  100% { stroke-dashoffset: 7100; }
+}
+
+
+/* --- FORCE --- */
+
+#path4, #path5, #path7, #path8, #path9, #path10, #mask10,
+#path3, #path11, #path6, #path1, #path2 {
+  stroke: black!important;
+  /*animation-play-state: paused;*/
+  opacity: 0;
+  transition: all 250ms ease-out;
+  transition-timing-function: linear;
+}
+
+#path4.start, #path5.start, #path7.start, #path8.start, #path9.start, #path10.start,
+#path3.start, #path11.start, #path6.start, #path1.start, #path2.start {
+  /*animation-play-state: running;*/
+  opacity: 1;
+}
+
+.letter { stroke: white; stroke-width: 2px;}

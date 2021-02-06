@@ -35,8 +35,6 @@ g, path, ellipse, circle {
   transform-box: fill-box;
   transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55); }
 
-/*$lengthbox: 2168;
-$lengthbrain: 1401;*/
 /* --- LANDSCAPE --- */
 svg {
   fill: #000; }
