@@ -67,69 +67,156 @@ svg {
 #start, #stop {
   cursor: pointer !important; }
 
-#yall #moodmoveR path, #yall #moodmoveL path {
-  transform: translateY(500px);
-  transition: all 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55); }
-
-#yall.start #moodmoveR path, #yall.start #moodmoveL path {
-  transform: translateY(0);
-  animation: goingcray 500ms 1 ease-out; }
-
-#yall.start #moodmoveL path {
-  animation-delay: 200ms; }
-
 #yall g#rightDude {
   transform: translateX(-600px);
-  transition: all 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+  transition: all 400ms ease-out;
+  transition-delay: 0; }
 
 #yall g#leftDude {
   transform: translateX(600px);
-  transition: all 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+  transition: all 400ms ease-out;
+  transition-delay: 0s; }
 
 #yall.start g#rightDude, #yall.start g#leftDude {
-  transform: translateX(0); }
+  transform: translateX(0);
+  transition: all 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 1s; }
 
-#moodmoveR {
-  animation: justgoing .5s infinite linear; }
+/* -- SMALLER NOWS --- */
+#moodmoveL, #moodmoveR {
+  transform: translateY(500px);
+  transition: all 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 0s; }
 
-#moodmoveL {
-  animation: justgoing 1s infinite linear;
+#yall #moodmoveR path, #yall #moodmoveL path {
+  animation: justgoing 2s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+
+#yall #moodmoveR path {
   animation-direction: reverse; }
+
+#yall.start #moodmoveR, #yall.start #moodmoveL {
+  transform: translateY(0);
+  transition: all 800ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 1s; }
 
 @keyframes justgoing {
   0% {
     transform: translateY(0); }
   33% {
-    transform: translateY(5px); }
+    transform: translateY(20px); }
   66% {
-    transform: translateY(-5px); }
+    transform: translateY(-20px); }
   100% {
     transform: translateY(0); } }
-@keyframes goingcray {
-  0% {
-    transform: translateY(500px); }
-  33% {
-    transform: translateY(-50px); }
-  66% {
-    transform: translateY(50px); }
-  100% {
-    transform: translateY(0); } }
+/* --- THUNDER --- */
 #yall #THUNDER, #yall #shredded, #yall #LsideCOLOR {
   opacity: 0;
-  transition: all 200ms ease-out;
+  transition: all 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
   transition-delay: .4s; }
 
 #yall.start #THUNDER, #yall.start #shredded, #yall.start #LsideCOLOR {
   opacity: 1;
-  transition-delay: 0s; }
+  transition-delay: 1s; }
 
 /* -- GROUP --- */
-#yall #groupX > g {
-  transform: translateY(0);
-  transition: all 500ms ease-in-out; }
+#dude3 {
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 240ms; }
 
-#yall.start #groupX > g {
-  transform: translateY(500px); }
+#yall.start #dude3 {
+  transform: translateY(0px) translateX(-1000px);
+  transition-delay: 240ms; }
+
+#dude4 {
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 320ms; }
+
+#yall.start #dude4 {
+  transform: translateY(0px) translateX(-1000px);
+  transition-delay: 320ms; }
+
+#dude5 {
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 400ms; }
+
+#yall.start #dude5 {
+  transform: translateY(0px) translateX(-1000px);
+  transition-delay: 400ms; }
+
+#dude6 {
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 480ms; }
+
+#yall.start #dude6 {
+  transform: translateY(0px) translateX(-1000px);
+  transition-delay: 480ms; }
+
+#dude7 {
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 560ms; }
+
+#yall.start #dude7 {
+  transform: translateY(0px) translateX(-1000px);
+  transition-delay: 560ms; }
+
+#dude6 {
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 480ms; }
+
+#yall.start #dude6 {
+  transform: translateY(0px) translateX(1000px);
+  transition-delay: 480ms; }
+
+#dude7 {
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 560ms; }
+
+#yall.start #dude7 {
+  transform: translateY(0px) translateX(1000px);
+  transition-delay: 560ms; }
+
+#dude8 {
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 640ms; }
+
+#yall.start #dude8 {
+  transform: translateY(0px) translateX(1000px);
+  transition-delay: 640ms; }
+
+#dude9 {
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 720ms; }
+
+#yall.start #dude9 {
+  transform: translateY(0px) translateX(1000px);
+  transition-delay: 720ms; }
+
+#dude10 {
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 800ms; }
+
+#yall.start #dude10 {
+  transform: translateY(0px) translateX(1000px);
+  transition-delay: 800ms; }
+
+#dude11 {
+  transform: translateY(0) translateX(0);
+  transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  transition-delay: 880ms; }
+
+#yall.start #dude11 {
+  transform: translateY(0px) translateX(1000px);
+  transition-delay: 880ms; }
 
 /* -- BLINKAGE -- */
 .bod {
@@ -137,16 +224,16 @@ svg {
   animation-fill-mode: alternate; }
 
 #head3, #back3 {
-  animation: wobble 1500ms infinite;
+  animation: wobble 1998ms infinite;
   animation-fill-mode: alternate; }
 
-#eyed3 {
-  animation: blink123 1500ms infinite;
-  animation-delay: 300ms;
+#eyed3, #eyedLeft .pupil, #eyedRight .pupil {
+  animation: blink123 1998ms infinite;
+  animation-delay: 999ms;
   animation-fill-mode: both; }
 
 #eyed3 > path:last-child {
-  fill: #ff00bf;
+  fill: #ff00b3;
   animation: abyss 1998ms infinite; }
 
 #head3 .bod {
@@ -157,16 +244,16 @@ svg {
   animation-fill-mode: alternate; }
 
 #head4, #back4 {
-  animation: wobble 2000ms infinite;
+  animation: wobble 2664ms infinite;
   animation-fill-mode: alternate; }
 
-#eyed4 {
-  animation: blink123 2000ms infinite;
-  animation-delay: 400ms;
+#eyed4, #eyedLeft .pupil, #eyedRight .pupil {
+  animation: blink123 2664ms infinite;
+  animation-delay: 1332ms;
   animation-fill-mode: both; }
 
 #eyed4 > path:last-child {
-  fill: #ff5500;
+  fill: #ff6600;
   animation: abyss 2664ms infinite; }
 
 #head4 .bod {
@@ -177,16 +264,16 @@ svg {
   animation-fill-mode: alternate; }
 
 #head5, #back5 {
-  animation: wobble 2500ms infinite;
+  animation: wobble 3330ms infinite;
   animation-fill-mode: alternate; }
 
-#eyed5 {
-  animation: blink123 2500ms infinite;
-  animation-delay: 500ms;
+#eyed5, #eyedLeft .pupil, #eyedRight .pupil {
+  animation: blink123 3330ms infinite;
+  animation-delay: 1665ms;
   animation-fill-mode: both; }
 
 #eyed5 > path:last-child {
-  fill: #95ff00;
+  fill: #80ff00;
   animation: abyss 3330ms infinite; }
 
 #head5 .bod {
@@ -197,16 +284,16 @@ svg {
   animation-fill-mode: alternate; }
 
 #head6, #back6 {
-  animation: wobble 3000ms infinite;
+  animation: wobble 3996ms infinite;
   animation-fill-mode: alternate; }
 
-#eyed6 {
-  animation: blink123 3000ms infinite;
-  animation-delay: 600ms;
+#eyed6, #eyedLeft .pupil, #eyedRight .pupil {
+  animation: blink123 3996ms infinite;
+  animation-delay: 1998ms;
   animation-fill-mode: both; }
 
 #eyed6 > path:last-child {
-  fill: #00ff80;
+  fill: #00ff99;
   animation: abyss 3996ms infinite; }
 
 #head6 .bod {
@@ -217,16 +304,16 @@ svg {
   animation-fill-mode: alternate; }
 
 #head7, #back7 {
-  animation: wobble 3500ms infinite;
+  animation: wobble 4662ms infinite;
   animation-fill-mode: alternate; }
 
-#eyed7 {
-  animation: blink123 3500ms infinite;
-  animation-delay: 700ms;
+#eyed7, #eyedLeft .pupil, #eyedRight .pupil {
+  animation: blink123 4662ms infinite;
+  animation-delay: 2331ms;
   animation-fill-mode: both; }
 
 #eyed7 > path:last-child {
-  fill: #006aff;
+  fill: #004dff;
   animation: abyss 4662ms infinite; }
 
 #head7 .bod {
@@ -237,16 +324,16 @@ svg {
   animation-fill-mode: alternate; }
 
 #head8, #back8 {
-  animation: wobble 4000ms infinite;
+  animation: wobble 5328ms infinite;
   animation-fill-mode: alternate; }
 
-#eyed8 {
-  animation: blink123 4000ms infinite;
-  animation-delay: 800ms;
+#eyed8, #eyedLeft .pupil, #eyedRight .pupil {
+  animation: blink123 5328ms infinite;
+  animation-delay: 2664ms;
   animation-fill-mode: both; }
 
 #eyed8 > path:last-child {
-  fill: #aa00ff;
+  fill: #cc00ff;
   animation: abyss 5328ms infinite; }
 
 #head8 .bod {
@@ -257,16 +344,16 @@ svg {
   animation-fill-mode: alternate; }
 
 #head9, #back9 {
-  animation: wobble 4500ms infinite;
+  animation: wobble 5994ms infinite;
   animation-fill-mode: alternate; }
 
-#eyed9 {
-  animation: blink123 4500ms infinite;
-  animation-delay: 900ms;
+#eyed9, #eyedLeft .pupil, #eyedRight .pupil {
+  animation: blink123 5994ms infinite;
+  animation-delay: 2997ms;
   animation-fill-mode: both; }
 
 #eyed9 > path:last-child {
-  fill: #ff0040;
+  fill: #ff001a;
   animation: abyss 5994ms infinite; }
 
 #head9 .bod {
@@ -277,16 +364,16 @@ svg {
   animation-fill-mode: alternate; }
 
 #head10, #back10 {
-  animation: wobble 5000ms infinite;
+  animation: wobble 6660ms infinite;
   animation-fill-mode: alternate; }
 
-#eyed10 {
-  animation: blink123 5000ms infinite;
-  animation-delay: 1000ms;
+#eyed10, #eyedLeft .pupil, #eyedRight .pupil {
+  animation: blink123 6660ms infinite;
+  animation-delay: 3330ms;
   animation-fill-mode: both; }
 
 #eyed10 > path:last-child {
-  fill: #ffd500;
+  fill: yellow;
   animation: abyss 6660ms infinite; }
 
 #head10 .bod {
@@ -297,16 +384,16 @@ svg {
   animation-fill-mode: alternate; }
 
 #head11, #back11 {
-  animation: wobble 5500ms infinite;
+  animation: wobble 7326ms infinite;
   animation-fill-mode: alternate; }
 
-#eyed11 {
-  animation: blink123 5500ms infinite;
-  animation-delay: 1100ms;
+#eyed11, #eyedLeft .pupil, #eyedRight .pupil {
+  animation: blink123 7326ms infinite;
+  animation-delay: 3663ms;
   animation-fill-mode: both; }
 
 #eyed11 > path:last-child {
-  fill: #15ff00;
+  fill: #00ff1a;
   animation: abyss 7326ms infinite; }
 
 #head11 .bod {
@@ -319,9 +406,9 @@ svg {
     fill-opacity: .3; } }
 @keyframes wobble {
   0%, 100% {
-    transform: rotate(5deg); }
+    transform: rotate(6deg); }
   50% {
-    transform: rotate(-5deg); } }
+    transform: rotate(-6deg); } }
 @keyframes abyss {
   0%, 100% {
     transform: scale(0.6); }
@@ -362,15 +449,17 @@ svg {
   animation-direction: alternate-reverse; }
 
 #yall #NOWlarge {
-  transform: translateY(-50px);
+  transform: translateY(-50px) scale(1);
   opacity: 1;
-  transition: all 250ms linear;
+  transition: all 400ms ease-out;
   animation-direction: alternate;
-  transition-delay: .4s; }
+  transition-delay: 1s; }
 
 #yall.start #NOWlarge {
+  transform: translateY(0) scale(0.5);
   opacity: 0;
-  transition-delay: 0s; }
+  transition: all 1000ms ease-out;
+  transition-delay: .3s; }
 
 #anohterNOW {
   transform: rotate(5deg); }
