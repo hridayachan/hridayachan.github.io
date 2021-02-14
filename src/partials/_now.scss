@@ -128,7 +128,7 @@ svg {
 
 @for $i from 3 through 11 {
   .bod {
-    animation: glow 50ms infinite;
+    animation: glow 72ms infinite;
     animation-fill-mode: alternate;
   }
 
@@ -156,8 +156,8 @@ svg {
 }
 
 @keyframes glow {
-  0%, 100% { fill-opacity: .2; }
-  50% { fill-opacity: .3; }
+  0%, 100% { fill-opacity: .15; }
+  50% { fill-opacity: .25; }
 }
 
 @keyframes wobble {
