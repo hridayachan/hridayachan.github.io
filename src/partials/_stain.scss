@@ -1,0 +1,61 @@
+@import 'mixins';
+
+
+// length stain: 72910
+
+#stain {
+	fill: none;
+	stroke: #000;
+	stroke-width: 5px;
+	stroke-dasharray: 2,10,0,0;
+	stroke-linecap: round;
+}
+
+#EYErot {
+	transform: rotate(-15deg);
+}
+
+#EYE #pupil, #EYE #glow {
+
+}
+
+/* --- PUPIL ----- */
+
+#EYE #white {
+	animation: blinky 3s infinite;
+	animation-fill-mode: both;
+}
+
+#EYE #pupil {
+	animation: abyss 3s infinite;
+}
+
+@keyframes abyss {
+	0%, 100% { transform: scale(1); }
+	10% { transform: scale(.5); }
+	30% { transform: scale(.5); }
+	38% { transform: scale(1.2); }
+	40% { transform: scale(1); }
+	43% { transform: scale(1.5); }
+	70% { transform: scale(1.4); }
+	73% { transform: scale(1.5); }
+	85% { transform: scale(.9); }
+	90% { transform: scale(1); }
+}
+
+@keyframes blinky {
+	0%, 100% { transform: scaleY(.9); }
+	28% { transform: scaleY(1); }
+	30% { transform: scaleY(.1); }
+	32% { transform: scaleY(.9); }
+	38% { transform: scaleY(.1); }
+	50% { transform: scaleY(1); }
+	90% { transform: scaleY(.9); }
+}
+
+/* ----- DUDE ---- */
+
+#dude {
+	transform: translate(-600px, -600px);
+}
+

@@ -1,0 +1,123 @@
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  overflow: hidden; }
+
+svg {
+  overflow: visible;
+  display: block;
+  margin: auto;
+  -webkit-transform-origin: center center;
+  -moz-transform-origin: center center;
+  transform-origin: center center;
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+  stroke-linejoin: round;
+  stroke-miterlimit: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(0.9);
+  -moz-transform: translate(-50%, -50%) scale(0.9);
+  transform: translate(-50%, -50%) scale(0.9); }
+
+clipPath path {
+  fill: none; }
+
+g, path, ellipse, circle {
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  transform-box: fill-box;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+
+/* --- LANDSCAPE --- */
+svg {
+  fill: #000; }
+
+#BG, #start path, #stop path, #LsideCOLOR {
+  fill: #462d7d;
+  animation: hues 20s infinite; }
+
+@keyframes hues {
+  0% {
+    fill: #462d7d; }
+  15% {
+    fill: #7d2d50; }
+  30% {
+    fill: #7d2d2d; }
+  45% {
+    fill: #7d6e2d; }
+  60% {
+    fill: #4a7d2d; }
+  75% {
+    fill: #2d7d70; }
+  90% {
+    fill: #2d407d; } }
+#start, #stop {
+  cursor: pointer !important; }
+
+/* ---------- */
+#stain {
+  fill: none;
+  stroke: #000;
+  stroke-width: 5px;
+  stroke-dasharray: 2,10,0,0;
+  stroke-linecap: round; }
+
+#EYErot {
+  transform: rotate(-15deg); }
+
+/* --- PUPIL ----- */
+#EYE #white {
+  animation: blinky 3s infinite;
+  animation-fill-mode: both; }
+
+#EYE #pupil {
+  animation: abyss 3s infinite; }
+
+@keyframes abyss {
+  0%, 100% {
+    transform: scale(1); }
+  10% {
+    transform: scale(0.5); }
+  30% {
+    transform: scale(0.5); }
+  38% {
+    transform: scale(1.2); }
+  40% {
+    transform: scale(1); }
+  43% {
+    transform: scale(1.5); }
+  70% {
+    transform: scale(1.4); }
+  73% {
+    transform: scale(1.5); }
+  85% {
+    transform: scale(0.9); }
+  90% {
+    transform: scale(1); } }
+@keyframes blinky {
+  0%, 100% {
+    transform: scaleY(0.9); }
+  28% {
+    transform: scaleY(1); }
+  30% {
+    transform: scaleY(0.1); }
+  32% {
+    transform: scaleY(0.9); }
+  38% {
+    transform: scaleY(0.1); }
+  50% {
+    transform: scaleY(1); }
+  90% {
+    transform: scaleY(0.9); } }
+/* ----- DUDE ---- */
+#dude {
+  transform: translate(-600px, -600px); }
+
+/*# sourceMappingURL=stain.css.map */
