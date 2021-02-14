@@ -43,6 +43,33 @@ svg {
   fill: #462d7d;
   animation: hues 20s infinite; }
 
+@keyframes hues {
+  0% {
+    fill: #462d7d; }
+  15% {
+    fill: #7d2d50; }
+  30% {
+    fill: #7d2d2d; }
+  45% {
+    fill: #7d6e2d; }
+  60% {
+    fill: #4a7d2d; }
+  75% {
+    fill: #2d7d70; }
+  90% {
+    fill: #2d407d; } }
+#start, #stop {
+  cursor: pointer !important; }
+
+/* ---------- */
+/* --- LANDSCAPE --- */
+svg {
+  fill: #000; }
+
+#BG, #start path, #stop path, #LsideCOLOR {
+  fill: #462d7d;
+  animation: hues 20s infinite; }
+
 #LsideCOLOR {
   animation-direction: reverse; }
 
@@ -87,10 +114,11 @@ svg {
   transition-delay: 0s; }
 
 #yall #moodmoveR path, #yall #moodmoveL path {
-  animation: justgoing 2s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+  animation: justgoing 1.9s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  animation-direction: alternate-reverse; }
 
 #yall #moodmoveR path {
-  animation-direction: reverse; }
+  animation-direction: alternate; }
 
 #yall.start #moodmoveR, #yall.start #moodmoveL {
   transform: translateY(0);
@@ -99,13 +127,9 @@ svg {
 
 @keyframes justgoing {
   0% {
-    transform: translateY(0); }
-  33% {
     transform: translateY(20px); }
-  66% {
-    transform: translateY(-20px); }
   100% {
-    transform: translateY(0); } }
+    transform: translateY(-20px); } }
 /* --- THUNDER --- */
 #yall #THUNDER, #yall #shredded, #yall #LsideCOLOR {
   opacity: 0;
@@ -218,7 +242,7 @@ svg {
 
 /* -- BLINKAGE -- */
 .bod {
-  animation: glow 50ms infinite;
+  animation: glow 72ms infinite;
   animation-fill-mode: alternate; }
 
 #head3, #back3 {
@@ -238,7 +262,7 @@ svg {
   transform: scale(0.8); }
 
 .bod {
-  animation: glow 50ms infinite;
+  animation: glow 72ms infinite;
   animation-fill-mode: alternate; }
 
 #head4, #back4 {
@@ -258,7 +282,7 @@ svg {
   transform: scale(0.8); }
 
 .bod {
-  animation: glow 50ms infinite;
+  animation: glow 72ms infinite;
   animation-fill-mode: alternate; }
 
 #head5, #back5 {
@@ -278,7 +302,7 @@ svg {
   transform: scale(0.8); }
 
 .bod {
-  animation: glow 50ms infinite;
+  animation: glow 72ms infinite;
   animation-fill-mode: alternate; }
 
 #head6, #back6 {
@@ -298,7 +322,7 @@ svg {
   transform: scale(0.8); }
 
 .bod {
-  animation: glow 50ms infinite;
+  animation: glow 72ms infinite;
   animation-fill-mode: alternate; }
 
 #head7, #back7 {
@@ -318,7 +342,7 @@ svg {
   transform: scale(0.8); }
 
 .bod {
-  animation: glow 50ms infinite;
+  animation: glow 72ms infinite;
   animation-fill-mode: alternate; }
 
 #head8, #back8 {
@@ -338,7 +362,7 @@ svg {
   transform: scale(0.8); }
 
 .bod {
-  animation: glow 50ms infinite;
+  animation: glow 72ms infinite;
   animation-fill-mode: alternate; }
 
 #head9, #back9 {
@@ -358,7 +382,7 @@ svg {
   transform: scale(0.8); }
 
 .bod {
-  animation: glow 50ms infinite;
+  animation: glow 72ms infinite;
   animation-fill-mode: alternate; }
 
 #head10, #back10 {
@@ -378,7 +402,7 @@ svg {
   transform: scale(0.8); }
 
 .bod {
-  animation: glow 50ms infinite;
+  animation: glow 72ms infinite;
   animation-fill-mode: alternate; }
 
 #head11, #back11 {
@@ -399,9 +423,9 @@ svg {
 
 @keyframes glow {
   0%, 100% {
-    fill-opacity: .2; }
+    fill-opacity: .15; }
   50% {
-    fill-opacity: .3; } }
+    fill-opacity: .25; } }
 @keyframes wobble {
   0%, 100% {
     transform: rotate(6deg); }
