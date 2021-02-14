@@ -6,6 +6,28 @@
 
 	<link rel="stylesheet" href="../css/parasites.css" type="text/css">
 
+	<style>
+
+	/* --- DEFAULT ---- */
+
+	#path4, #path5, #path7, #path8, #path9, #path10, #mask10,
+	#path3, #path11, #path6, #path1, #path2 {
+	  stroke: black!important;
+	  /*animation-play-state: paused;*/
+	  opacity: 0;
+	  transition: all 250ms ease-out;
+	  transition-timing-function: linear;
+	}
+
+	#path4.start, #path5.start, #path7.start, #path8.start, #path9.start, #path10.start,
+	#path3.start, #path11.start, #path6.start, #path1.start, #path2.start {
+	  /*animation-play-state: running;*/
+	  opacity: 1;
+	}
+
+	.letter { stroke: white; stroke-width: 2px;}
+
+	</style>
 </head>
 <body>
 	<svg width="100%" height="100%" viewBox="0 0 1040 1595" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/">

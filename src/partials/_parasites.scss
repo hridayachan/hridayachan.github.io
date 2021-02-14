@@ -17,8 +17,6 @@
   100% { stroke-dashoffset: 1800; }
 }
 
-/* whatever 16940 */
-
 #path3, #path1 {
   stroke-dasharray: 2000;
   stroke-dashoffset: -3200;
@@ -66,23 +64,3 @@
   0% { stroke-dashoffset: -1340; }
   100% { stroke-dashoffset: 7100; }
 }
-
-
-/* --- FORCE --- */
-
-#path4, #path5, #path7, #path8, #path9, #path10, #mask10,
-#path3, #path11, #path6, #path1, #path2 {
-  stroke: black!important;
-  /*animation-play-state: paused;*/
-  opacity: 0;
-  transition: all 250ms ease-out;
-  transition-timing-function: linear;
-}
-
-#path4.start, #path5.start, #path7.start, #path8.start, #path9.start, #path10.start,
-#path3.start, #path11.start, #path6.start, #path1.start, #path2.start {
-  /*animation-play-state: running;*/
-  opacity: 1;
-}
-
-.letter { stroke: white; stroke-width: 2px;}
