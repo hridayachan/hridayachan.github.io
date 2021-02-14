@@ -39,10 +39,14 @@ g, path, ellipse, circle {
 svg {
   fill: #000; }
 
-#BG, #start path, #stop path, #LsideCOLOR {
+#BG, #start path, #stop path {
   fill: #462d7d;
   animation: hues 20s infinite; }
 
+#start, #stop {
+  cursor: pointer !important; }
+
+/* ---------- */
 @keyframes hues {
   0% {
     fill: #462d7d; }
@@ -58,16 +62,35 @@ svg {
     fill: #2d7d70; }
   90% {
     fill: #2d407d; } }
-#start, #stop {
-  cursor: pointer !important; }
-
 /* ---------- */
-#stain {
+@keyframes hues {
+  0% {
+    fill: #462d7d; }
+  15% {
+    fill: #7d2d50; }
+  30% {
+    fill: #7d2d2d; }
+  45% {
+    fill: #7d6e2d; }
+  60% {
+    fill: #4a7d2d; }
+  75% {
+    fill: #2d7d70; }
+  90% {
+    fill: #2d407d; } }
+#stainNeg {
+  fill: #462d7d;
+  animation: hues 20s infinite; }
+
+#yall #stain {
   fill: none;
   stroke: #000;
   stroke-width: 5px;
   stroke-dasharray: 2,10,0,0;
   stroke-linecap: round; }
+
+#yall.start #stain {
+  transition: all 3s ease-in; }
 
 #EYErot {
   transform: rotate(-15deg); }

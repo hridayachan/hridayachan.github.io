@@ -1,14 +1,24 @@
 @import 'mixins';
+@import 'keyframes';
 
+#stainNeg {
+	fill: #462d7d;
+	animation: hues 20s infinite;
+}
 
 // length stain: 72910
 
-#stain {
+#yall #stain {
 	fill: none;
 	stroke: #000;
 	stroke-width: 5px;
 	stroke-dasharray: 2,10,0,0;
 	stroke-linecap: round;
+}
+
+#yall.start #stain {
+
+	transition: all 3s ease-in;
 }
 
 #EYErot {
